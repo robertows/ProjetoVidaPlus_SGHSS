@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes - SGHSS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Gestão de Consultas Médicas</h1>
+    </header>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="pacientes.html">Pacientes</a>
+        <a href="consultas.html">Consultas</a>
+        <a href="profissionais.html">Profissionais</a>
+        <a href="administracao.html">Administração</a>
+        <a href="telemedicina.html">Telemedicina</a>
+        <a href="seguranca.html">Segurança</a>
+    </nav>
+    <div class="container">
+        <h1>Cadastro de Atendimento de Pacientes</h1>
+    </div>
+    <form id="formPaciente">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" required>
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" required>
+        <button type="submit">Cadastrar Paciente</button>
+    </form>
+    <h2>Lista de Pacientes</h2>
+    <table id="tabelaPacientes">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Prontuário</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody id="corpoTabela"></tbody>
+    </table>
+    <div class="text-right">
+        <p>© 2025 Roberto Carvalho RU: 4334534 - Todos os direitos reservados!</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
