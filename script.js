@@ -125,6 +125,7 @@ function atualizarTodasTabelasESelecoes() {
 }
 
 // Função para configurar eventos
+// Função para configurar eventos
 function configurarEventos() {
     if (domElements.formPaciente) domElements.formPaciente.addEventListener('submit', handleFormPaciente);
     if (domElements.formConsulta) domElements.formConsulta.addEventListener('submit', handleFormConsulta);
@@ -146,6 +147,17 @@ function configurarEventos() {
     if (domElements.selecionarConsultaTele) domElements.selecionarConsultaTele.addEventListener('change', carregarConsultaSelecionada);
     if (domElements.selecionarPacienteHistorico) domElements.selecionarPacienteHistorico.addEventListener('change', mostrarHistoricoPrescricoes);
 
+    // Verificação em tempo real do CPF
+    const cpfInput = document.getElementById('cpf');
+    if (cpfInput) {
+        cpfInput.addEventListener('input', () => {
+            const cpf = cpfInput.value.trim();
+            if (cpf && validarCPF(cpf)) {
+                notificar('CPF válido.');
+            }
+        });
+    }
+
     const confirmarExclusaoBtn = document.getElementById('confirmarExclusao');
     if (confirmarExclusaoBtn) {
         confirmarExclusaoBtn.addEventListener('click', () => {
@@ -165,6 +177,12 @@ function handleFormPaciente(event) {
     const dataNascimento = document.getElementById('dataNascimento')?.value;
     const telefone = document.getElementById('telefone')?.value.trim();
     const endereco = document.getElementById('endereco')?.value.trim();
+
+    if (!cpf) {
+        alert('Erro: O campo CPF é obrigatório!');
+        return;
+    }
+
     if (nome && validarCPF(cpf) && dataNascimento && telefone && endereco) {
         adicionarPaciente(nome, cpf, dataNascimento, telefone, endereco);
         domElements.formPaciente.reset();
@@ -385,7 +403,19 @@ function atualizarLogAuditoria() {
 
 function notificar(mensagem) {
     console.log('Notificação:', mensagem);
-    // Opcional: Implementar um sistema de notificação na UI
+
+    // Criar elemento de notificação
+    const notificacao = document.createElement('div');
+    notificacao.className = 'notificacao';
+    notificacao.textContent = mensagem;
+
+    // Adicionar ao corpo da página
+    document.body.appendChild(notificacao);
+
+    // Remover a notificação após 3 segundos
+    setTimeout(() => {
+        notificacao.remove();
+    }, 3000);
 }
 
 function validarCPF(cpf) {
@@ -635,7 +665,7 @@ function adicionarPaciente(nome, cpf, dataNascimento, telefone, endereco) {
     pacientes.push(paciente);
     atualizarTodasTabelasESelecoes();
     registrarAuditoria(`Paciente ${nome} adicionado por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-    notificar(`Paciente ${nome} adicionado`);
+    notificar('Paciente cadastrado com sucesso.'); // Mensagem ajustada
     salvarDados();
 }
 
@@ -648,7 +678,7 @@ function adicionarConsulta(cpfPaciente, crmProfissional, data, hora, especialida
         paciente.historico.push(`Consulta com ${profissional.nome} (${especialidade}) em ${data} às ${hora}`);
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Consulta para ${paciente.nome} com ${profissional.nome} adicionada por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar(`Consulta para ${paciente.nome} adicionada`);
+        notificar('Consulta presencial agendada com sucesso.'); // Mensagem ajustada
         salvarDados();
     }
 }
@@ -661,7 +691,7 @@ function adicionarExame(cpfPaciente, tipo, data, resultado) {
         paciente.historico.push(`Exame ${tipo} agendado para ${data} - Resultado: ${resultado}`);
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Exame ${tipo} para ${paciente.nome} adicionado por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar(`Exame ${tipo} para ${paciente.nome} adicionado`);
+        notificar('Exame agendado com sucesso.'); // Mensagem ajustada
         salvarDados();
     }
 }
@@ -671,7 +701,7 @@ function adicionarProfissional(nome, categoria, especialidade, crm, telefone, em
     profissionais.push(profissional);
     atualizarTodasTabelasESelecoes();
     registrarAuditoria(`Profissional ${nome} adicionado por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-    notificar(`Profissional ${nome} adicionado`);
+    notificar('Profissional cadastrado com sucesso.'); // Mensagem ajustada
     salvarDados();
 }
 
@@ -682,7 +712,7 @@ function adicionarSuprimento(nome, quantidade, precoUnitario) {
     historicoFinanceiro.push({ data: new Date().toLocaleDateString(), receita: 0, despesa: quantidade * precoUnitario });
     atualizarTodasTabelasESelecoes();
     registrarAuditoria(`Suprimento ${nome} adicionado por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-    notificar(`Suprimento ${nome} adicionado`);
+    notificar('Suprimento adicionado com sucesso.'); // Mensagem ajustada
     salvarDados();
 }
 
@@ -695,7 +725,7 @@ function adicionarConsultaTelemedicina(cpfPaciente, crmProfissional, data, hora)
         paciente.historico.push(`Consulta de Telemedicina com ${profissional.nome} (${profissional.especialidade}) em ${data} às ${hora}`);
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Consulta de telemedicina para ${paciente.nome} adicionada por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar(`Consulta de telemedicina para ${paciente.nome} adicionada`);
+        notificar('Consulta online agendada com sucesso.'); // Mensagem ajustada
         salvarDados();
     }
 }
@@ -712,7 +742,7 @@ function adicionarPrescricao(consultaIndex, medicamento, dosagem, instrucoes) {
         }
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Prescrição online para ${consulta.paciente} adicionada por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar(`Prescrição adicionada para ${consulta.paciente}`);
+        notificar('Prescrição adicionada com sucesso.'); // Mensagem ajustada
         salvarDados();
     }
 }
@@ -727,7 +757,7 @@ function adicionarPrescricaoProf(cpfPaciente, medicamento, dosagem, instrucoes) 
         paciente.historico.push(`Prescrição Presencial: ${medicamento} - ${dosagem} - ${instrucoes} (${data}) por ${profissional}`);
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Prescrição presencial para ${paciente.nome} adicionada por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar(`Prescrição adicionada para ${paciente.nome}`);
+        notificar('Prescrição adicionada com sucesso.'); // Mensagem ajustada
         salvarDados();
     }
 }
