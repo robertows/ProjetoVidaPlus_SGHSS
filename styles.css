@@ -268,3 +268,73 @@ table tr:nth-child(even) {
         width: 100%;
     }
 }
+/* Estilo para notificações */
+.notificacao {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745; /* Verde para sucesso */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsividade para notificações */
+@media (max-width: 480px) {
+    .notificacao {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        font-size: 0.9em;
+    }
+}
+/* Estilo para notificações */
+.notificacao {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745; /* Verde para sucesso */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsividade para notificações */
+@media (max-width: 480px) {
+    .notificacao {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        font-size: 0.9em;
+    }
+}
