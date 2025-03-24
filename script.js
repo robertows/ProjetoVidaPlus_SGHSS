@@ -91,13 +91,24 @@ document.addEventListener('DOMContentLoaded', () => {
     atualizarTodasTabelasESelecoes();
     configurarEventos();
     if (usuarioLogado && domElements.usuarioLogadoSpan) {
-        domElements.usuarioLogadoSpan.textContent = `${usuarioLogado.usuario} (${usuarioLogado.permissao})`;
+        domElements.usuarioLogadoSpan.textContent = `${usuarioLogado.usuario} (${formatarPermissao(usuarioLogado.permissao)})`;
         if (domElements.btnLogin) domElements.btnLogin.style.display = 'none';
         if (domElements.btnLogout) domElements.btnLogout.style.display = 'inline';
         if (domElements.loginUsuario) domElements.loginUsuario.style.display = 'none';
         if (domElements.loginSenha) domElements.loginSenha.style.display = 'none';
     }
 });
+
+// Função para formatar permissões para exibição
+function formatarPermissao(permissao) {
+    switch (permissao) {
+        case 'admin': return 'Administrador';
+        case 'atendente': return 'Atendente';
+        case 'profissional_saude': return 'Profissional de Saúde';
+        case 'paciente': return 'Paciente';
+        default: return permissao;
+    }
+}
 
 // Função para atualizar todas as tabelas e seleções
 function atualizarTodasTabelasESelecoes() {
@@ -124,7 +135,6 @@ function atualizarTodasTabelasESelecoes() {
     if (domElements.corpoTabelaHistoricoPrescricoes) mostrarHistoricoPrescricoes();
 }
 
-// Função para configurar eventos
 // Função para configurar eventos
 function configurarEventos() {
     if (domElements.formPaciente) domElements.formPaciente.addEventListener('submit', handleFormPaciente);
@@ -284,8 +294,13 @@ function handleFormPrescricaoProf(event) {
     const dosagem = document.getElementById('dosagemProf')?.value.trim();
     const instrucoes = document.getElementById('instrucoesProf')?.value.trim();
     if (cpfPaciente && medicamento && dosagem && instrucoes) {
-        adicionarPrescricaoProf(cpfPaciente, medicamento, dosagem, instrucoes);
-        domElements.formPrescricaoProf.reset();
+        // Verificar se o usuário logado tem permissão para adicionar prescrição
+        if (usuarioLogado && usuarioLogado.permissao === 'profissional_saude') {
+            adicionarPrescricaoProf(cpfPaciente, medicamento, dosagem, instrucoes);
+            domElements.formPrescricaoProf.reset();
+        } else {
+            alert('Apenas profissionais de saúde podem adicionar prescrições presenciais.');
+        }
     } else {
         alert('Preencha todos os campos!');
     }
@@ -652,7 +667,7 @@ function atualizarTabelaAcesso() {
         domElements.corpoTabelaAcesso.innerHTML = usuarios.map((u, i) => `
             <tr>
                 <td>${u.usuario}</td>
-                <td>${u.permissao}</td>
+                <td>${formatarPermissao(u.permissao)}</td>
                 <td><button class="excluir" onclick="confirmarExclusao(${i}, 'usuario')" aria-label="Excluir usuário ${u.usuario}">Excluir</button></td>
             </tr>
         `).join('');
@@ -665,7 +680,7 @@ function adicionarPaciente(nome, cpf, dataNascimento, telefone, endereco) {
     pacientes.push(paciente);
     atualizarTodasTabelasESelecoes();
     registrarAuditoria(`Paciente ${nome} adicionado por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-    notificar('Paciente cadastrado com sucesso.'); // Mensagem ajustada
+    notificar('Paciente cadastrado com sucesso.');
     salvarDados();
 }
 
@@ -678,7 +693,7 @@ function adicionarConsulta(cpfPaciente, crmProfissional, data, hora, especialida
         paciente.historico.push(`Consulta com ${profissional.nome} (${especialidade}) em ${data} às ${hora}`);
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Consulta para ${paciente.nome} com ${profissional.nome} adicionada por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar('Consulta presencial agendada com sucesso.'); // Mensagem ajustada
+        notificar('Consulta presencial agendada com sucesso.');
         salvarDados();
     }
 }
@@ -691,7 +706,7 @@ function adicionarExame(cpfPaciente, tipo, data, resultado) {
         paciente.historico.push(`Exame ${tipo} agendado para ${data} - Resultado: ${resultado}`);
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Exame ${tipo} para ${paciente.nome} adicionado por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar('Exame agendado com sucesso.'); // Mensagem ajustada
+        notificar('Exame agendado com sucesso.');
         salvarDados();
     }
 }
@@ -701,7 +716,7 @@ function adicionarProfissional(nome, categoria, especialidade, crm, telefone, em
     profissionais.push(profissional);
     atualizarTodasTabelasESelecoes();
     registrarAuditoria(`Profissional ${nome} adicionado por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-    notificar('Profissional cadastrado com sucesso.'); // Mensagem ajustada
+    notificar('Profissional cadastrado com sucesso.');
     salvarDados();
 }
 
@@ -712,7 +727,7 @@ function adicionarSuprimento(nome, quantidade, precoUnitario) {
     historicoFinanceiro.push({ data: new Date().toLocaleDateString(), receita: 0, despesa: quantidade * precoUnitario });
     atualizarTodasTabelasESelecoes();
     registrarAuditoria(`Suprimento ${nome} adicionado por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-    notificar('Suprimento adicionado com sucesso.'); // Mensagem ajustada
+    notificar('Suprimento adicionado com sucesso.');
     salvarDados();
 }
 
@@ -725,7 +740,7 @@ function adicionarConsultaTelemedicina(cpfPaciente, crmProfissional, data, hora)
         paciente.historico.push(`Consulta de Telemedicina com ${profissional.nome} (${profissional.especialidade}) em ${data} às ${hora}`);
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Consulta de telemedicina para ${paciente.nome} adicionada por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar('Consulta online agendada com sucesso.'); // Mensagem ajustada
+        notificar('Consulta online agendada com sucesso.');
         salvarDados();
     }
 }
@@ -742,7 +757,7 @@ function adicionarPrescricao(consultaIndex, medicamento, dosagem, instrucoes) {
         }
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Prescrição online para ${consulta.paciente} adicionada por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar('Prescrição adicionada com sucesso.'); // Mensagem ajustada
+        notificar('Prescrição adicionada com sucesso.');
         salvarDados();
     }
 }
@@ -751,13 +766,13 @@ function adicionarPrescricaoProf(cpfPaciente, medicamento, dosagem, instrucoes) 
     const paciente = pacientes.find(p => p.cpf === cpfPaciente);
     if (paciente) {
         const data = new Date().toLocaleString();
-        const profissional = usuarioLogado?.permissao === 'medico' ? usuarioLogado.usuario : 'Profissional não identificado';
+        const profissional = usuarioLogado?.permissao === 'profissional_saude' ? usuarioLogado.usuario : 'Profissional não identificado';
         const prescricao = { consulta: paciente.nome, medicamento, dosagem, instrucoes, data, profissional, tipo: 'Presencial' };
         prescricoes.push(prescricao);
         paciente.historico.push(`Prescrição Presencial: ${medicamento} - ${dosagem} - ${instrucoes} (${data}) por ${profissional}`);
         atualizarTodasTabelasESelecoes();
         registrarAuditoria(`Prescrição presencial para ${paciente.nome} adicionada por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
-        notificar('Prescrição adicionada com sucesso.'); // Mensagem ajustada
+        notificar('Prescrição adicionada com sucesso.');
         salvarDados();
     }
 }
@@ -799,7 +814,7 @@ function executarExclusao(index, tipo) {
         case 'consultaTele': excluirConsultaTelemedicina(index); break;
         case 'prescricao': excluirPrescricao(index); break;
         case 'usuario': excluirUsuario(index); break;
-        case 'financeiro': excluirFinanceiro(index); break; // Novo caso para financeiro
+        case 'financeiro': excluirFinanceiro(index); break;
     }
 }
 
@@ -882,12 +897,9 @@ function excluirUsuario(index) {
 
 function excluirFinanceiro(index) {
     const registro = historicoFinanceiro[index];
-    // Atualizar receita e despesas globais
     receita -= registro.receita;
     despesas -= registro.despesa;
-    // Remover o registro do histórico
     historicoFinanceiro.splice(index, 1);
-    // Atualizar a interface e salvar os dados
     atualizarFinancas();
     atualizarTabelaFinanceiro();
     registrarAuditoria(`Registro financeiro de ${registro.data} excluído por ${usuarioLogado?.usuario || 'Usuário não logado'}`);
@@ -1002,7 +1014,7 @@ function login() {
         if (decrypted === senha) {
             usuarioLogado = { usuario: user.usuario, permissao: user.permissao };
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
-            if (domElements.usuarioLogadoSpan) domElements.usuarioLogadoSpan.textContent = `${usuarioLogado.usuario} (${usuarioLogado.permissao})`;
+            if (domElements.usuarioLogadoSpan) domElements.usuarioLogadoSpan.textContent = `${usuarioLogado.usuario} (${formatarPermissao(usuarioLogado.permissao)})`;
             if (domElements.btnLogin) domElements.btnLogin.style.display = 'none';
             if (domElements.btnLogout) domElements.btnLogout.style.display = 'inline';
             if (domElements.loginUsuario) domElements.loginUsuario.style.display = 'none';
@@ -1056,18 +1068,23 @@ function excluirMeusDados() {
         alert('Faça login para excluir seus dados!');
         return;
     }
-    const paciente = pacientes.find(p => p.nome === usuarioLogado.usuario); // Assume que o usuário logado é um paciente pelo nome
-    if (paciente) {
-        pacientes = pacientes.filter(p => p !== paciente);
-        consultas = consultas.filter(c => c.paciente !== paciente.nome);
-        exames = exames.filter(e => e.paciente !== paciente.nome);
-        consultasTele = consultasTele.filter(t => t.paciente !== paciente.nome);
-        prescricoes = prescricoes.filter(pr => pr.consulta !== paciente.nome && !pr.consulta.includes(paciente.nome));
-        atualizarTodasTabelasESelecoes();
-        registrarAuditoria(`Dados do paciente ${paciente.nome} excluídos por ${usuarioLogado.usuario}`);
-        notificar('Seus dados foram excluídos com sucesso!');
-        salvarDados();
+    // Verificar se o usuário logado tem permissão de "paciente"
+    if (usuarioLogado.permissao === 'paciente') {
+        const paciente = pacientes.find(p => p.nome === usuarioLogado.usuario);
+        if (paciente) {
+            pacientes = pacientes.filter(p => p !== paciente);
+            consultas = consultas.filter(c => c.paciente !== paciente.nome);
+            exames = exames.filter(e => e.paciente !== paciente.nome);
+            consultasTele = consultasTele.filter(t => t.paciente !== paciente.nome);
+            prescricoes = prescricoes.filter(pr => pr.consulta !== paciente.nome && !pr.consulta.includes(paciente.nome));
+            atualizarTodasTabelasESelecoes();
+            registrarAuditoria(`Dados do paciente ${paciente.nome} excluídos por ${usuarioLogado.usuario}`);
+            notificar('Seus dados foram excluídos com sucesso!');
+            salvarDados();
+        } else {
+            alert('Nenhum dado de paciente associado a este usuário encontrado!');
+        }
     } else {
-        alert('Nenhum dado de paciente associado a este usuário encontrado!');
+        alert('Apenas usuários com permissão de "Paciente" podem excluir seus próprios dados.');
     }
 }
