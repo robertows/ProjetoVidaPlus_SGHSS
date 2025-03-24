@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profissionais - SGHSS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Gestão de Profissionais</h1>
+    </header>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="pacientes.html">Pacientes</a>
+        <a href="consultas.html">Consultas</a>
+        <a href="profissionais.html">Profissionais</a>
+        <a href="administracao.html">Administração</a>
+        <a href="telemedicina.html">Telemedicina</a>
+        <a href="seguranca.html">Segurança</a>
+    </nav>
+    <div class="container">
+        <h1>Cadastro de Profissionais</h1>
+        <form id="formProfissional">
+            <div class="input-group">
+                <label for="nomeProfissional">Nome:</label>
+                <input type="text" id="nomeProfissional" required aria-label="Nome do profissional">
+                <label for="categoriaProfissional">Categoria:</label>
+                <select id="categoriaProfissional" required aria-label="Categoria do profissional">
+                    <option value="">Selecione a categoria</option>
+                    <option value="medico">Médico</option>
+                    <option value="enfermeiro">Enfermeiro</option>
+                    <option value="tecnico">Técnico</option>
+                </select>
+                <label for="especialidadeProfissional">Especialidade:</label>
+                <input type="text" id="especialidadeProfissional" required aria-label="Especialidade do profissional" placeholder="Ex: Cardiologia">
+                <label for="crm">CRM/Registro:</label>
+                <input type="text" id="crm" required aria-label="CRM ou registro do profissional" placeholder="CRM ou outro registro">
+                <label for="telefoneProfissional">Telefone:</label>
+                <input type="text" id="telefoneProfissional" required aria-label="Telefone do profissional">
+                <label for="emailProfissional">Email:</label>
+                <input type="email" id="emailProfissional" required aria-label="Email do profissional">
+                <button type="submit" aria-label="Cadastrar profissional">Cadastrar Profissional</button>
+            </div>
+        </form>
+        <h2>Profissionais Cadastrados</h2>
+        <table id="tabelaProf">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Especialidade</th>
+                    <th>CRM/Registro</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabelaProf"></tbody>
+        </table>
+        <h2>Agenda do Profissional (Presencial e Online)</h2>
+        <label for="selecionarProfissional">Selecionar Profissional:</label>
+        <select id="selecionarProfissional" aria-label="Selecionar profissional para visualizar agenda">
+            <option value="">Selecione um profissional</option>
+        </select>
+        <table id="tabelaAgenda">
+            <thead>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Especialidade/Tipo</th>
+                    <th>Tipo de Consulta</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabelaAgenda"></tbody>
+        </table>
+        <h2>Adicionar Prescrição</h2>
+        <form id="formPrescricaoProf">
+            <div class="input-group">
+                <label for="pacientePrescricao">Paciente:</label>
+                <select id="pacientePrescricao" required aria-label="Selecionar paciente para prescrição">
+                    <option value="">Selecione um paciente</option>
+                </select>
+                <label for="medicamentoProf">Medicamento:</label>
+                <input type="text" id="medicamentoProf" required aria-label="Nome do medicamento">
+                <label for="dosagemProf">Dosagem:</label>
+                <input type="text" id="dosagemProf" required aria-label="Dosagem do medicamento">
+                <label for="instrucoesProf">Instruções:</label>
+                <input type="text" id="instrucoesProf" required aria-label="Instruções de uso">
+                <button type="submit" aria-label="Adicionar prescrição">Adicionar Prescrição</button>
+            </div>
+        </form>
+        <h2>Histórico Clínico do Paciente</h2>
+        <label for="selecionarPacienteHistorico">Selecionar Paciente:</label>
+        <select id="selecionarPacienteHistorico" aria-label="Selecionar paciente para visualizar histórico de prescrições">
+            <option value="">Selecione um paciente</option>
+        </select>
+        <table id="tabelaHistoricoPrescricoes">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Profissional</th>
+                    <th>Medicamento/Tipo</th>
+                    <th>Dosagem</th>
+                    <th>Instruções/Resultado</th>
+                    <th>Tipo</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabelaHistoricoPrescricoes"></tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="confirmacaoModal" tabindex="-1" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacaoModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja excluir este item?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmarExclusao">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>© 2025 Roberto Carvalho RU: 4334534 - Todos os direitos reservados.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>

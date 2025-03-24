@@ -1,0 +1,270 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Navegação */
+nav {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #007bff;
+}
+
+/* Seção principal */
+.hero-section {
+    background-color: #e9ecef;
+    padding: 50px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    padding-bottom: 60px; /* Adicionado anteriormente para evitar sobreposição com o footer */
+}
+
+/* Formulários */
+form {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    flex: 1 1 100px;
+    font-weight: bold;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    flex: 2 1 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-group button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.input-group button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo específico para os botões de videochamada */
+#startVideoCall,
+#stopVideoCall,
+#startVideoCallExtra,
+#stopVideoCallExtra {
+    padding: 10px 20px;
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#startVideoCall:hover,
+#stopVideoCall:hover,
+#startVideoCallExtra:hover,
+#stopVideoCallExtra:hover {
+    background-color: #c82333; /* Vermelho mais escuro no hover */
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Botões de exclusão */
+.excluir {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.excluir:hover {
+    background-color: #c82333;
+}
+
+/* Seções específicas */
+.management-section,
+.auth-section,
+.access-control-section,
+.lgpd-section,
+.audit-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.info-group p {
+    margin: 5px 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.lgpd-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.anonimizar {
+    background-color: #28a745;
+    color: white;
+}
+
+.anonimizar:hover {
+    background-color: #218838;
+}
+
+.excluir {
+    background-color: #dc3545;
+    color: white;
+}
+
+.excluir:hover {
+    background-color: #c82333;
+}
+
+/* Rodapé */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Estilização de logs de auditoria */
+#logAuditoria p {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group label,
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .hero-section {
+        padding: 30px;
+    }
+
+    .management-section,
+    .auth-section,
+    .access-control-section,
+    .lgpd-section,
+    .audit-section {
+        padding: 15px;
+    }
+
+    #videoContainer video {
+        width: 100%;
+        max-width: 300px;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .input-group button {
+        width: 100%;
+    }
+}
