@@ -1,89 +1,89 @@
 /* Estilos gerais */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: Arial, sans-serif; /* Define a fonte padrão como Arial ou sans-serif */
+    margin: 0; /* Remove margens padrão do corpo */
+    padding: 0; /* Remove preenchimento padrão do corpo */
+    background-color: #f4f4f4; /* Define a cor de fundo como cinza claro */
+    color: #333; /* Define a cor do texto como cinza escuro */
 }
 
 /* Cabeçalho */
 header {
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    padding: 20px;
+    background-color: #007bff; /* Define a cor de fundo como azul */
+    color: white; /* Define a cor do texto como branco */
+    text-align: center; /* Centraliza o texto */
+    padding: 20px; /* Adiciona preenchimento interno de 20px */
 }
 
 /* Navegação */
 nav {
-    background-color: #333;
-    padding: 10px;
-    text-align: center;
+    background-color: #333; /* Define a cor de fundo como cinza escuro */
+    padding: 10px; /* Adiciona preenchimento interno de 10px */
+    text-align: center; /* Centraliza o texto */
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
+    color: white; /* Define a cor dos links como branco */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    margin: 0 15px; /* Define margens horizontais de 15px entre os links */
+    font-weight: bold; /* Define o texto dos links como negrito */
 }
 
 nav a:hover {
-    color: #007bff;
+    color: #007bff; /* Muda a cor dos links para azul ao passar o mouse */
 }
 
 /* Seção principal */
 .hero-section {
-    background-color: #e9ecef;
-    padding: 50px;
-    text-align: center;
+    background-color: #e9ecef; /* Define a cor de fundo como cinza claro */
+    padding: 50px; /* Adiciona preenchimento interno de 50px */
+    text-align: center; /* Centraliza o texto */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    padding-bottom: 60px; /* Adicionado anteriormente para evitar sobreposição com o footer */
+    max-width: 1200px; /* Define a largura máxima do contêiner como 1200px */
+    margin: 20px auto; /* Centraliza o contêiner com margem de 20px acima e abaixo */
+    padding: 20px; /* Adiciona preenchimento interno de 20px */
+    padding-bottom: 60px; /* Aumenta o preenchimento inferior para 60px */
 }
 
 /* Formulários */
 form {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Adiciona margem inferior de 20px aos formulários */
 }
 
 .input-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
+    display: flex; /* Define o layout como flexbox */
+    flex-wrap: wrap; /* Permite que os itens quebrem linha em telas menores */
+    gap: 10px; /* Define um espaçamento de 10px entre os elementos */
+    margin-bottom: 15px; /* Adiciona margem inferior de 15px */
 }
 
 .input-group label {
-    flex: 1 1 100px;
-    font-weight: bold;
+    flex: 1 1 100px; /* Define a largura mínima do rótulo como 100px */
+    font-weight: bold; /* Define o texto dos rótulos como negrito */
 }
 
 .input-group input,
 .input-group select,
 .input-group textarea {
-    flex: 2 1 200px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    flex: 2 1 200px; /* Define a largura mínima dos campos como 200px */
+    padding: 8px; /* Adiciona preenchimento interno de 8px */
+    border: 1px solid #ccc; /* Define uma borda cinza clara de 1px */
+    border-radius: 4px; /* Arredonda os cantos dos campos em 4px */
 }
 
 .input-group button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 10px 20px; /* Define preenchimento interno de 10px vertical e 20px horizontal */
+    background-color: #007bff; /* Define a cor de fundo como azul */
+    color: white; /* Define a cor do texto como branco */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Arredonda os cantos em 4px */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
 }
 
 .input-group button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Muda a cor de fundo para um azul mais escuro ao passar o mouse */
 }
 
 /* Estilo específico para os botões de videochamada */
@@ -91,57 +91,57 @@ form {
 #stopVideoCall,
 #startVideoCallExtra,
 #stopVideoCallExtra {
-    padding: 10px 20px;
-    background-color: #dc3545; /* Vermelho */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 5px;
+    padding: 10px 20px; /* Define preenchimento interno de 10px vertical e 20px horizontal */
+    background-color: #dc3545; /* Define a cor de fundo como vermelho */
+    color: white; /* Define a cor do texto como branco */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Arredonda os cantos em 4px */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    margin: 5px; /* Adiciona margem de 5px ao redor dos botões */
 }
 
 #startVideoCall:hover,
 #stopVideoCall:hover,
 #startVideoCallExtra:hover,
 #stopVideoCallExtra:hover {
-    background-color: #c82333; /* Vermelho mais escuro no hover */
+    background-color: #c82333; /* Muda a cor de fundo para um vermelho mais escuro ao passar o mouse */
 }
 
 /* Tabelas */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    width: 100%; /* Define a largura da tabela como 100% do contêiner */
+    border-collapse: collapse; /* Remove espaçamento entre as bordas das células */
+    margin-bottom: 20px; /* Adiciona margem inferior de 20px */
 }
 
 table th,
 table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
+    padding: 10px; /* Adiciona preenchimento interno de 10px */
+    border: 1px solid #ddd; /* Define uma borda cinza clara de 1px */
+    text-align: left; /* Alinha o texto à esquerda */
 }
 
 table th {
-    background-color: #007bff;
-    color: white;
+    background-color: #007bff; /* Define a cor de fundo do cabeçalho como azul */
+    color: white; /* Define a cor do texto do cabeçalho como branco */
 }
 
 table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Define a cor de fundo das linhas pares como cinza claro */
 }
 
 /* Botões de exclusão */
 .excluir {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
+    background-color: #dc3545; /* Define a cor de fundo como vermelho */
+    color: white; /* Define a cor do texto como branco */
+    border: none; /* Remove a borda padrão */
+    padding: 5px 10px; /* Define preenchimento interno de 5px vertical e 10px horizontal */
+    border-radius: 4px; /* Arredonda os cantos em 4px */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
 }
 
 .excluir:hover {
-    background-color: #c82333;
+    background-color: #c82333; /* Muda a cor de fundo para um vermelho mais escuro ao passar o mouse */
 }
 
 /* Seções específicas */
@@ -150,94 +150,147 @@ table tr:nth-child(even) {
 .access-control-section,
 .lgpd-section,
 .audit-section {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    background-color: white; /* Define a cor de fundo como branco */
+    padding: 20px; /* Adiciona preenchimento interno de 20px */
+    border-radius: 8px; /* Arredonda os cantos em 8px */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+    margin-bottom: 20px; /* Adiciona margem inferior de 20px */
 }
 
 .info-group p {
-    margin: 5px 0;
+    margin: 5px 0; /* Define margens superior e inferior de 5px nos parágrafos */
 }
 
 .button-group {
-    display: flex;
-    gap: 10px;
+    display: flex; /* Define o layout como flexbox */
+    gap: 10px; /* Define um espaçamento de 10px entre os botões */
 }
 
 .lgpd-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 10px 20px; /* Define preenchimento interno de 10px vertical e 20px horizontal */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Arredonda os cantos em 4px */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
 }
 
 .anonimizar {
-    background-color: #28a745;
-    color: white;
+    background-color: #28a745; /* Define a cor de fundo como verde */
+    color: white; /* Define a cor do texto como branco */
 }
 
 .anonimizar:hover {
-    background-color: #218838;
+    background-color: #218838; /* Muda a cor de fundo para um verde mais escuro ao passar o mouse */
 }
 
 .excluir {
-    background-color: #dc3545;
-    color: white;
+    background-color: #dc3545; /* Define a cor de fundo como vermelho */
+    color: white; /* Define a cor do texto como branco */
 }
 
 .excluir:hover {
-    background-color: #c82333;
+    background-color: #c82333; /* Muda a cor de fundo para um vermelho mais escuro ao passar o mouse */
 }
 
 /* Rodapé */
 .footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1;
+    background-color: #333; /* Define a cor de fundo como cinza escuro */
+    color: white; /* Define a cor do texto como branco */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px; /* Adiciona preenchimento interno de 10px */
+    position: fixed; /* Fixa o rodapé na parte inferior da página */
+    bottom: 0; /* Alinha o rodapé ao fundo da janela */
+    width: 100%; /* Define a largura como 100% */
+    z-index: 1; /* Garante que o rodapé fique acima de outros elementos */
 }
 
 /* Estilização de logs de auditoria */
 #logAuditoria p {
-    margin: 5px 0;
-    padding: 5px;
-    background-color: #f8f9fa;
-    border-left: 4px solid #007bff;
+    margin: 5px 0; /* Define margens superior e inferior de 5px nos parágrafos */
+    padding: 5px; /* Adiciona preenchimento interno de 5px */
+    background-color: #f8f9fa; /* Define a cor de fundo como cinza claro */
+    border-left: 4px solid #007bff; /* Adiciona uma borda azul à esquerda */
+}
+
+/* Estilo para notificações */
+.modal-notificacao {
+    position: fixed; /* Fixa a notificação na tela */
+    top: 20px; /* Posiciona 20px do topo */
+    right: 20px; /* Posiciona 20px da direita */
+    background-color: #4CAF50; /* Define a cor de fundo como verde (sucesso) */
+    color: white; /* Define a cor do texto como branco */
+    padding: 15px 20px; /* Define preenchimento interno de 15px vertical e 20px horizontal */
+    border-radius: 5px; /* Arredonda os cantos em 5px */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra suave */
+    z-index: 1000; /* Garante que a notificação fique acima de outros elementos */
+    display: none; /* Oculta a notificação por padrão */
+    opacity: 0; /* Define a opacidade inicial como 0 */
+    font-size: 16px; /* Define o tamanho da fonte como 16px */
+    min-width: 200px; /* Define a largura mínima como 200px */
+    text-align: center; /* Centraliza o texto */
+    animation: slideIn 0.5s ease-in-out forwards; /* Aplica a animação de entrada */
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%); /* Inicia a notificação fora da tela à direita */
+        opacity: 0; /* Inicia com opacidade 0 */
+    }
+    to {
+        transform: translateX(0); /* Move a notificação para a posição final */
+        opacity: 1; /* Torna a notificação totalmente visível */
+    }
+}
+
+/* Animação de saída */
+@keyframes slideOut {
+    from {
+        transform: translateX(0); /* Inicia na posição visível */
+        opacity: 1; /* Inicia com opacidade total */
+    }
+    to {
+        transform: translateX(100%); /* Move a notificação para fora da tela à direita */
+        opacity: 0; /* Torna a notificação invisível */
+    }
+}
+
+/* Responsividade para notificações */
+@media (max-width: 480px) {
+    .modal-notificacao {
+        top: 10px; /* Reduz a distância do topo para 10px */
+        right: 10px; /* Reduz a distância da direita para 10px */
+        left: 10px; /* Adiciona margem à esquerda de 10px */
+        font-size: 0.9em; /* Reduz o tamanho da fonte para 0.9em */
+    }
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
     .input-group {
-        flex-direction: column;
+        flex-direction: column; /* Altera o layout do grupo de entrada para coluna */
     }
 
     .input-group label,
     .input-group input,
     .input-group select,
     .input-group textarea {
-        flex: 1 1 100%;
-        width: 100%;
+        flex: 1 1 100%; /* Define a largura como 100% para cada elemento */
+        width: 100%; /* Garante que ocupem toda a largura disponível */
     }
 
     table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+        display: block; /* Altera a exibição da tabela para bloco */
+        overflow-x: auto; /* Adiciona rolagem horizontal para tabelas grandes */
+        white-space: nowrap; /* Impede a quebra de linha no texto da tabela */
     }
 
     nav a {
-        display: block;
-        margin: 10px 0;
+        display: block; /* Exibe os links de navegação como blocos */
+        margin: 10px 0; /* Define margens verticais de 10px entre os links */
     }
 
     .hero-section {
-        padding: 30px;
+        padding: 30px; /* Reduz o preenchimento interno para 30px */
     }
 
     .management-section,
@@ -245,96 +298,35 @@ table tr:nth-child(even) {
     .access-control-section,
     .lgpd-section,
     .audit-section {
-        padding: 15px;
+        padding: 15px; /* Reduz o preenchimento interno para 15px */
     }
 
     #videoContainer video {
-        width: 100%;
-        max-width: 300px;
-        margin: 10px 0;
+        width: 100%; /* Define a largura dos vídeos como 100% */
+        max-width: 300px; /* Limita a largura máxima a 300px */
+        margin: 10px 0; /* Define margens verticais de 10px */
     }
 }
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.5em;
+        font-size: 1.5em; /* Reduz o tamanho da fonte do título para 1.5em */
     }
 
     .container {
-        padding: 10px;
+        padding: 10px; /* Reduz o preenchimento interno do contêiner para 10px */
     }
 
     .input-group button {
-        width: 100%;
-    }
-}
-/* Estilo para notificações */
-.notificacao {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #28a745; /* Verde para sucesso */
-    color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    animation: slideIn 0.5s ease-in-out;
-}
-
-/* Animação de entrada */
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
+        width: 100%; /* Define a largura dos botões como 100% */
     }
 }
 
-/* Responsividade para notificações */
-@media (max-width: 480px) {
-    .notificacao {
-        top: 10px;
-        right: 10px;
-        left: 10px;
-        font-size: 0.9em;
-    }
-}
-/* Estilo para notificações */
-.notificacao {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #28a745; /* Verde para sucesso */
-    color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    animation: slideIn 0.5s ease-in-out;
+.lgpd-button.cancelar-anonimizacao {
+    background-color: #6c757d; /* Define a cor de fundo como cinza */
+    color: white; /* Define a cor do texto como branco */
 }
 
-/* Animação de entrada */
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Responsividade para notificações */
-@media (max-width: 480px) {
-    .notificacao {
-        top: 10px;
-        right: 10px;
-        left: 10px;
-        font-size: 0.9em;
-    }
+.lgpd-button.cancelar-anonimizacao:hover {
+    background-color: #5a6268; /* Muda a cor de fundo para um cinza mais escuro ao passar o mouse */
 }
