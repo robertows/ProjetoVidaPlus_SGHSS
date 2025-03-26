@@ -1,109 +1,110 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html> <!-- Declaração do tipo de documento como HTML5 -->
+<html lang="pt-BR"> <!-- Define o idioma do documento como português brasileiro -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VidaPlus - Segurança</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura a responsividade para dispositivos móveis -->
+    <title>VidaPlus - Segurança e Compliance</title> <!-- Título da página exibido na aba do navegador -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <!-- Importa o CSS do Bootstrap -->
+    <link rel="stylesheet" href="styles.css"> <!-- Vincula um arquivo CSS personalizado -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script> <!-- Importa a biblioteca CryptoJS no cabeçalho -->
 </head>
-<body>
-    <header>
-        <h1>VidaPlus - Sistema de Gestão Hospitalar (SGHSS)</h1>
+<body> <!-- Início do corpo da página -->
+    <header> <!-- Seção do cabeçalho -->
+        <h1>VidaPlus - Sistema de Gestão Hospitalar (SGHSS)</h1> <!-- Título principal da página -->
     </header>
-    <nav>
-        <a href="index.html">Início</a>
-        <a href="pacientes.html">Pacientes</a>
-        <a href="consultas.html">Consultas</a>
-        <a href="profissionais.html">Profissionais</a>
-        <a href="administracao.html">Administração</a>
-        <a href="telemedicina.html">Telemedicina</a>
-        <a href="seguranca.html">Segurança</a>
+    <nav> <!-- Seção de navegação com links -->
+        <a href="index.html">Início</a> <!-- Link para a página inicial -->
+        <a href="pacientes.html">Pacientes</a> <!-- Link para a página de pacientes -->
+        <a href="consultas.html">Consultas</a> <!-- Link para a página de consultas -->
+        <a href="profissionais.html">Profissionais</a> <!-- Link para a página de profissionais -->
+        <a href="administracao.html">Administração</a> <!-- Link para a página de administração -->
+        <a href="telemedicina.html">Telemedicina</a> <!-- Link para a página de telemedicina -->
+        <a href="seguranca.html">Segurança</a> <!-- Link para a página atual (segurança) -->
     </nav>
-    <div class="container">
-        <section class="auth-section">
-            <h2>Autenticação</h2>
-            <div class="auth-container">
-                <div class="input-group">
-                    <label for="loginUsuario">Usuário:</label>
-                    <input type="text" id="loginUsuario" placeholder="Digite seu usuário">
-                    <label for="loginSenha">Senha:</label>
-                    <input type="password" id="loginSenha" placeholder="Digite sua senha">
-                    <button id="btnLogin" onclick="login()">Login</button>
-                    <button id="btnLogout" onclick="logout()">Logout</button>
+    <div class="container"> <!-- Contêiner Bootstrap para organizar o conteúdo -->
+        <section class="auth-section"> <!-- Seção de autenticação -->
+            <h2>Autenticação</h2> <!-- Título da seção -->
+            <div class="auth-container"> <!-- Contêiner para os elementos de autenticação -->
+                <div class="input-group"> <!-- Agrupamento de campos de entrada -->
+                    <label for="loginUsuario">Usuário:</label> <!-- Rótulo do campo usuário -->
+                    <input type="text" id="loginUsuario" placeholder="Digite seu usuário"> <!-- Campo de texto para o usuário -->
+                    <label for="loginSenha">Senha:</label> <!-- Rótulo do campo senha -->
+                    <input type="password" id="loginSenha" placeholder="Digite sua senha"> <!-- Campo de senha -->
+                    <button id="btnLogin" onclick="login()">Login</button> <!-- Botão para realizar login, chama função login() -->
+                    <button id="btnLogout" onclick="logout()">Logout</button> <!-- Botão para realizar logout, chama função logout() -->
                 </div>
-                <p>Usuário logado: <span id="usuarioLogado">Nenhum</span></p>
+                <p>Usuário logado: <span id="usuarioLogado">Nenhum</span></p> <!-- Exibe o usuário atualmente logado -->
             </div>
         </section>
-        <section class="access-control-section">
-            <h2>Controle de Acesso</h2>
-            <div class="access-control-container">
-                <form id="formAcesso">
-                    <div class="input-group">
-                        <label for="novoUsuario">Usuário:</label>
-                        <input type="text" id="novoUsuario" placeholder="Digite o usuário" required>
-                        <label for="novaSenha">Senha:</label>
-                        <input type="password" id="novaSenha" placeholder="Digite a senha" required>
-                        <label for="permissao">Permissão:</label>
-                        <select id="permissao" required>
-                            <option value="admin">Administrador</option>
-                            <option value="atendente">Atendente</option>
-                            <option value="profissional_saude">Profissional de Saúde</option>
-                            <option value="paciente">Paciente</option>
+        <section class="access-control-section"> <!-- Seção de controle de acesso -->
+            <h2>Controle de Acesso</h2> <!-- Título da seção -->
+            <div class="access-control-container"> <!-- Contêiner para os elementos de controle de acesso -->
+                <form id="formAcesso"> <!-- Formulário para adicionar novos usuários -->
+                    <div class="input-group"> <!-- Agrupamento de campos de entrada -->
+                        <label for="novoUsuario">Usuário:</label> <!-- Rótulo do campo usuário -->
+                        <input type="text" id="novoUsuario" placeholder="Digite o usuário" required> <!-- Campo de texto para o usuário, obrigatório -->
+                        <label for="novaSenha">Senha:</label> <!-- Rótulo do campo senha -->
+                        <input type="password" id="novaSenha" placeholder="Digite a senha" required> <!-- Campo de senha, obrigatório -->
+                        <label for="permissao">Permissão:</label> <!-- Rótulo do campo permissão -->
+                        <select id="permissao" required> <!-- Menu dropdown para selecionar permissão, obrigatório -->
+                            <option value="admin">Administrador</option> <!-- Opção de permissão -->
+                            <option value="atendente">Atendente</option> <!-- Opção de permissão -->
+                            <option value="profissional_saude">Profissional de Saúde</option> <!-- Opção de permissão -->
+                            <option value="paciente">Paciente</option> <!-- Opção de permissão -->
                         </select>
-                        <button type="submit">Adicionar Usuário</button>
+                        <button type="submit">Adicionar Usuário</button> <!-- Botão para enviar o formulário -->
                     </div>
                 </form>
             </div>
         </section>
-        <section class="access-control-section">
-            <h2>Usuários Cadastrados</h2>
-            <table id="tabelaAcesso">
-                <thead>
-                    <tr>
-                        <th>Usuário</th>
-                        <th>Permissão</th>
-                        <th>Ação</th>
+        <section class="access-control-section"> <!-- Seção de listagem de usuários -->
+            <h2>Usuários Cadastrados</h2> <!-- Título da seção -->
+            <table id="tabelaAcesso"> <!-- Tabela para exibir usuários cadastrados -->
+                <thead> <!-- Cabeçalho da tabela -->
+                    <tr> <!-- Linha de títulos das colunas -->
+                        <th>Usuário</th> <!-- Coluna para o usuário -->
+                        <th>Permissão</th> <!-- Coluna para a permissão -->
+                        <th>Ação</th> <!-- Coluna para ações (ex.: excluir, editar) -->
                     </tr>
                 </thead>
-                <tbody id="corpoTabelaAcesso"></tbody>
+                <tbody id="corpoTabelaAcesso"></tbody> <!-- Corpo da tabela onde os dados serão inseridos dinamicamente -->
             </table>
         </section>
-        <section class="lgpd-section">
-            <h2>LGPD - Proteção de Dados</h2>
-            <div class="button-group">
-                <button id="anonimizarBtn" class="lgpd-button anonimizar" onclick="anonimizarCPFs()">Anonimizar CPFs</button>
-                <button id="excluirDadosBtn" class="lgpd-button excluir" onclick="excluirMeusDados()">Excluir Meus Dados</button>
+        <section class="lgpd-section"> <!-- Seção de proteção de dados (LGPD) -->
+            <h2>LGPD - Proteção de Dados</h2> <!-- Título da seção -->
+            <div class="button-group"> <!-- Agrupamento de botões -->
+                <button id="anonimizarBtn" class="lgpd-button anonimizar" onclick="anonimizarCPFs()">Anonimizar CPFs</button> <!-- Botão para anonimizar CPFs, chama função anonimizarCPFs() -->
+                <button id="cancelarAnonimizacaoBtn" class="lgpd-button cancelar-anonimizacao" onclick="cancelarAnonimizacaoCPFs()">Cancelar Anonimização</button> <!-- Botão para cancelar anonimização, chama função cancelarAnonimizacaoCPFs() -->
+                <button id="excluirDadosBtn" class="lgpd-button excluir" onclick="excluirMeusDados()">Excluir Meus Dados</button> <!-- Botão para excluir dados, chama função excluirMeusDados() -->
             </div>
         </section>
-        <section class="audit-section">
-            <h2>Registros de Auditoria</h2>
-            <input type="text" id="filtroAuditoria" placeholder="Filtrar por usuário ou data">
-            <div id="logAuditoria"></div>
+        <section class="audit-section"> <!-- Seção de registros de auditoria -->
+            <h2>Registros de Auditoria</h2> <!-- Título da seção -->
+            <input type="text" id="filtroAuditoria" placeholder="Filtrar por usuário ou data"> <!-- Campo de texto para filtrar registros -->
+            <div id="logAuditoria"></div> <!-- Div onde os registros de auditoria serão exibidos dinamicamente -->
         </section>
     </div>
-    <div class="modal fade" id="confirmacaoModal" tabindex="-1" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmacaoModalLabel">Confirmação</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+    <div class="modal fade" id="confirmacaoModal" tabindex="-1" aria-labelledby="confirmacaoModalLabel" aria-hidden="true"> <!-- Modal Bootstrap para confirmação -->
+        <div class="modal-dialog"> <!-- Estrutura do modal -->
+            <div class="modal-content"> <!-- Conteúdo do modal -->
+                <div class="modal-header"> <!-- Cabeçalho do modal -->
+                    <h5 class="modal-title" id="confirmacaoModalLabel">Confirmação</h5> <!-- Título do modal -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button> <!-- Botão para fechar o modal -->
                 </div>
-                <div class="modal-body">
-                    Tem certeza que deseja excluir este item?
+                <div class="modal-body"> <!-- Corpo do modal -->
+                    Tem certeza que deseja excluir este item? <!-- Mensagem de confirmação -->
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="confirmarExclusao">Excluir</button>
+                <div class="modal-footer"> <!-- Rodapé do modal -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button> <!-- Botão para cancelar -->
+                    <button type="button" class="btn btn-danger" id="confirmarExclusao">Excluir</button> <!-- Botão para confirmar exclusão -->
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <p>© 2025 Roberto Carvalho RU: 4334534 - Todos os direitos reservados.</p>
+    <footer class="footer"> <!-- Rodapé da página -->
+        <p>© 2025 Roberto Carvalho RU: 4334534 - Todos os direitos reservados.</p> <!-- Texto de direitos autorais -->
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> <!-- Importa o JavaScript do Bootstrap -->
+    <script src="script.js"></script> <!-- Vincula um arquivo JavaScript personalizado -->
 </body>
 </html>
