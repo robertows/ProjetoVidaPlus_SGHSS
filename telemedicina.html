@@ -1,125 +1,131 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html> <!-- Declaração do tipo de documento como HTML5 -->
+<html lang="pt-BR"> <!-- Define o idioma do documento como português brasileiro -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telemedicina - SGHSS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura a responsividade para dispositivos móveis -->
+    <title>Telemedicina - SGHSS</title> <!-- Título da página exibido na aba do navegador -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <!-- Importa o CSS do Bootstrap -->
+    <link rel="stylesheet" href="styles.css"> <!-- Vincula um arquivo CSS personalizado -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script> <!-- Importa a biblioteca CryptoJS no cabeçalho -->
 </head>
-<body>
-    <header>
-        <h1>Gestão de Telemedicina</h1>
+<body> <!-- Início do corpo da página -->
+    <header> <!-- Seção do cabeçalho -->
+        <h1>Gestão de Telemedicina</h1> <!-- Título principal da página -->
     </header>
-    <nav>
-        <a href="index.html">Início</a>
-        <a href="pacientes.html">Pacientes</a>
-        <a href="consultas.html">Consultas</a>
-        <a href="profissionais.html">Profissionais</a>
-        <a href="administracao.html">Administração</a>
-        <a href="telemedicina.html">Telemedicina</a>
-        <a href="seguranca.html">Segurança</a>
+    <nav> <!-- Seção de navegação com links -->
+        <a href="index.html">Início</a> <!-- Link para a página inicial -->
+        <a href="pacientes.html">Pacientes</a> <!-- Link para a página de pacientes -->
+        <a href="consultas.html">Consultas</a> <!-- Link para a página de consultas -->
+        <a href="profissionais.html">Profissionais</a> <!-- Link para a página de profissionais -->
+        <a href="administracao.html">Administração</a> <!-- Link para a página de administração -->
+        <a href="telemedicina.html">Telemedicina</a> <!-- Link para a página atual (telemedicina) -->
+        <a href="seguranca.html">Segurança</a> <!-- Link para a página de segurança -->
     </nav>
-    <div class="container">
-        <h1>Agendamento de Consultas de Telemedicina</h1>
-        <form id="formTelemedicina">
-            <div class="input-group">
-                <label for="pacienteTele">Paciente:</label>
-                <select id="pacienteTele" required></select>
-                <label for="profissionalTele">Profissional:</label>
-                <select id="profissionalTele" required></select>
-                <label for="dataTele">Data:</label>
-                <input type="date" id="dataTele" required>
-                <label for="horaTele">Hora:</label>
-                <input type="time" id="horaTele" required>
-                <button type="submit">Agendar Consulta</button>
+    <div class="container"> <!-- Contêiner Bootstrap para organizar o conteúdo -->
+        <h1>Agendamento de Consultas de Telemedicina</h1> <!-- Título da seção de agendamento -->
+        <form id="formTelemedicina"> <!-- Formulário para agendar consultas de telemedicina -->
+            <div class="input-group"> <!-- Agrupamento de campos de entrada -->
+                <label for="pacienteTele">Paciente:</label> <!-- Rótulo do campo paciente -->
+                <select id="pacienteTele" required></select> <!-- Menu dropdown para selecionar paciente, obrigatório -->
+                <label for="profissionalTele">Profissional:</label> <!-- Rótulo do campo profissional -->
+                <select id="profissionalTele" required></select> <!-- Menu dropdown para selecionar profissional, obrigatório -->
+                <label for="dataTele">Data:</label> <!-- Rótulo do campo data -->
+                <input type="date" id="dataTele" required> <!-- Campo de data, obrigatório -->
+                <label for="horaTele">Hora:</label> <!-- Rótulo do campo hora -->
+                <input type="time" id="horaTele" required> <!-- Campo de hora, obrigatório -->
+                <button type="submit">Agendar Consulta</button> <!-- Botão para enviar o formulário -->
             </div>
         </form>
-        <h2>Consultas de Telemedicina Agendadas</h2>
-        <table id="tabelaTelemedicina">
-            <thead>
-                <tr>
-                    <th>Paciente</th>
-                    <th>Profissional</th>
-                    <th>Data</th>
-                    <th>Hora</th>
-                    <th>Tipo</th>
-                    <th>Ação</th>
+        <h2>Consultas de Telemedicina Agendadas</h2> <!-- Título da seção de listagem -->
+        <table id="tabelaTelemedicina"> <!-- Tabela para exibir consultas agendadas -->
+            <thead> <!-- Cabeçalho da tabela -->
+                <tr> <!-- Linha de títulos das colunas -->
+                    <th>Paciente</th> <!-- Coluna para o paciente -->
+                    <th>Profissional</th> <!-- Coluna para o profissional -->
+                    <th>Data</th> <!-- Coluna para a data -->
+                    <th>Hora</th> <!-- Coluna para a hora -->
+                    <th>Tipo</th> <!-- Coluna para o tipo de consulta -->
+                    <th>Ação</th> <!-- Coluna para ações (ex.: excluir, editar) -->
                 </tr>
             </thead>
-            <tbody id="corpoTabelaTelemedicina"></tbody>
+            <tbody id="corpoTabelaTelemedicina"></tbody> <!-- Corpo da tabela onde os dados serão inseridos dinamicamente -->
         </table>
-        <h2>Adicionar Prescrição</h2>
-        <form id="formPrescricao">
-            <div class="input-group">
-                <label for="consultaTelePrescricao">Consulta:</label>
-                <select id="consultaTelePrescricao" required></select>
-                <label for="medicamento">Medicamento:</label>
-                <input type="text" id="medicamento" required>
-                <label for="dosagem">Dosagem:</label>
-                <input type="text" id="dosagem" required>
-                <label for="instrucoes">Instruções:</label>
-                <textarea id="instrucoes" required></textarea>
-                <button type="submit">Adicionar Prescrição</button>
+        <h2>Adicionar Prescrição</h2> <!-- Título da seção de prescrição -->
+        <form id="formPrescricao"> <!-- Formulário para adicionar prescrições -->
+            <div class="input-group"> <!-- Agrupamento de campos de entrada -->
+                <label for="consultaTelePrescricao">Consulta:</label> <!-- Rótulo do campo consulta -->
+                <select id="consultaTelePrescricao" required></select> <!-- Menu dropdown para selecionar consulta, obrigatório -->
+                <label for="medicamento">Medicamento:</label> <!-- Rótulo do campo medicamento -->
+                <input type="text" id="medicamento" required> <!-- Campo de texto para o medicamento, obrigatório -->
+                <label for="dosagem">Dosagem:</label> <!-- Rótulo do campo dosagem -->
+                <input type="text" id="dosagem" required> <!-- Campo de texto para a dosagem, obrigatório -->
+                <label for="instrucoes">Instruções:</label> <!-- Rótulo do campo instruções -->
+                <textarea id="instrucoes" required></textarea> <!-- Área de texto para instruções, obrigatória -->
+                <button type="submit">Adicionar Prescrição</button> <!-- Botão para enviar o formulário -->
             </div>
         </form>
-        <h2>Histórico Clínico do Paciente</h2>
-        <label for="selecionarPacienteHistorico">Selecionar Paciente:</label>
-        <select id="selecionarPacienteHistorico" aria-label="Selecionar paciente para visualizar histórico de prescrições">
-            <option value="">Selecione um paciente</option>
+        <h2>Histórico Clínico do Paciente</h2> <!-- Título da seção de histórico -->
+        <label for="selecionarPacienteHistorico">Selecionar Paciente:</label> <!-- Rótulo do campo de seleção de paciente -->
+        <select id="selecionarPacienteHistorico" onchange="atualizarTabelaPrescricoes()" aria-label="Selecionar paciente para visualizar histórico de prescrições"> <!-- Menu dropdown para selecionar paciente, com evento para atualizar prescrições -->
+            <option value="">Selecione um paciente</option> <!-- Opção padrão do menu -->
         </select>
-        <table id="tabelaHistoricoPrescricoes">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Profissional</th>
-                    <th>Medicamento/Tipo</th>
-                    <th>Dosagem</th>
-                    <th>Instruções/Resultado</th>
-                    <th>Tipo</th>
-                    <th>Ação</th>
+        <table id="tabelaHistoricoPrescricoes"> <!-- Tabela para exibir o histórico clínico -->
+            <thead> <!-- Cabeçalho da tabela -->
+                <tr> <!-- Linha de títulos das colunas -->
+                    <th>Data</th> <!-- Coluna para a data -->
+                    <th>Profissional</th> <!-- Coluna para o profissional -->
+                    <th>Medicamento/Tipo</th> <!-- Coluna para o medicamento ou tipo -->
+                    <th>Dosagem</th> <!-- Coluna para a dosagem -->
+                    <th>Instruções/Resultado</th> <!-- Coluna para instruções ou resultado -->
+                    <th>Tipo</th> <!-- Coluna para o tipo (ex.: prescrição, exame) -->
+                    <th>Ação</th> <!-- Coluna para ações (ex.: excluir, editar) -->
                 </tr>
             </thead>
-            <tbody id="corpoTabelaHistoricoPrescricoes"></tbody>
+            <tbody id="corpoTabelaHistoricoPrescricoes"></tbody> <!-- Corpo da tabela onde os dados serão inseridos dinamicamente -->
         </table>
-        <h2>Iniciar Videochamada</h2>
-        <div id="videoContainer" style="display: flex; flex-direction: column; align-items: center;">
-            <select id="selecionarConsultaTele" onchange="carregarConsultaSelecionada()">
-                <option value="">Selecione uma consulta para iniciar</option>
+        <h2>Iniciar Videochamada</h2> <!-- Título da seção de videochamada -->
+        <div id="videoContainer" style="display: flex; flex-direction: column; align-items: center;"> <!-- Contêiner para a interface de videochamada -->
+            <select id="selecionarConsultaTele" onchange="carregarConsultaSelecionada()"> <!-- Menu dropdown para selecionar consulta, com evento para carregar dados -->
+                <option value="">Selecione uma consulta para iniciar</option> <!-- Opção padrão do menu -->
             </select>
-            <p id="mensagemVideochamada">Selecione um paciente para iniciar uma videochamada.</p>
-            <div id="videoArea" style="margin-top: 20px; display: none;">
-                <video id="localVideo" autoplay muted style="width: 300px; border: 1px solid #ccc;"></video>
-                <video id="remoteVideo" autoplay style="width: 300px; border: 1px solid #ccc; margin-left: 10px;"></video>
-                <div style="margin-top: 20px;">
-                    <button id="startVideoCall" onclick="iniciarVideoChamada()">Iniciar Videochamada</button>
-                    <button id="stopVideoCall" onclick="encerrarVideoChamada()" style="display: none;">Encerrar Videochamada</button>
+            <p id="mensagemVideochamada" style="margin-top: 10px;">Selecione um paciente para iniciar uma videochamada.</p> <!-- Mensagem inicial -->
+            <div style="margin-top: 10px;"> <!-- Agrupamento de botões -->
+                <button id="startVideoCall" onclick="iniciarVideoChamada()" class="btn btn-success">Iniciar Videochamada</button> <!-- Botão para iniciar a videochamada -->
+                <button id="stopVideoCall" onclick="encerrarVideoChamada()" class="btn btn-danger" style="display: none;">Encerrar Videochamada</button> <!-- Botão para encerrar a videochamada, inicialmente oculto -->
+            </div>
+            <div id="videoArea" style="margin-top: 20px; display: none; display: flex; justify-content: center; flex-wrap: wrap;"> <!-- Área para exibir os vídeos, inicialmente oculta -->
+                <div style="position: relative; width: 300px; margin: 10px;"> <!-- Contêiner para o vídeo local -->
+                    <video id="localVideo" autoplay muted style="width: 100%; border: 1px solid #ccc; border-radius: 5px;"></video> <!-- Vídeo local (médico), reproduz automaticamente e sem som -->
+                    <p style="text-align: center; margin-top: 5px;">Você (Médico)</p> <!-- Legenda do vídeo local -->
+                </div>
+                <div id="remoteVideoContainer" style="position: relative; width: 300px; height: 225px; margin: 10px; border: 1px solid #ccc; border-radius: 5px; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0;"> <!-- Contêiner para o vídeo remoto -->
+                    <video id="remoteVideo" autoplay style="width: 100%; height: 100%; display: none;"></video> <!-- Vídeo remoto (paciente), inicialmente oculto -->
+                    <p id="remoteVideoPlaceholder" style="text-align: center;">Vídeo do Paciente (Simulado)</p> <!-- Placeholder até o vídeo remoto ser exibido -->
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="confirmacaoModal" tabindex="-1" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmacaoModalLabel">Confirmação</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+    <div class="modal fade" id="confirmacaoModal" tabindex="-1" aria-labelledby="confirmacaoModalLabel" aria-hidden="true"> <!-- Modal Bootstrap para confirmação -->
+        <div class="modal-dialog"> <!-- Estrutura do modal -->
+            <div class="modal-content"> <!-- Conteúdo do modal -->
+                <div class="modal-header"> <!-- Cabeçalho do modal -->
+                    <h5 class="modal-title" id="confirmacaoModalLabel">Confirmação</h5> <!-- Título do modal -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button> <!-- Botão para fechar o modal -->
                 </div>
-                <div class="modal-body">
-                    Tem certeza que deseja excluir este item?
+                <div class="modal-body"> <!-- Corpo do modal -->
+                    Tem certeza que deseja excluir este item? <!-- Mensagem de confirmação -->
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="confirmarExclusao">Excluir</button>
+                <div class="modal-footer"> <!-- Rodapé do modal -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button> <!-- Botão para cancelar -->
+                    <button type="button" class="btn btn-danger" id="confirmarExclusao">Excluir</button> <!-- Botão para confirmar exclusão -->
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <p>© 2025 Roberto Carvalho RU: 4334534 - Todos os direitos reservados.</p>
+    <footer class="footer"> <!-- Rodapé da página -->
+        <p>© 2025 Roberto Carvalho RU: 4334534 - Todos os direitos reservados.</p> <!-- Texto de direitos autorais -->
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> <!-- Importa o JavaScript do Bootstrap -->
+    <script src="script.js"></script> <!-- Vincula um arquivo JavaScript personalizado -->
 </body>
-</html>
+</html> 
