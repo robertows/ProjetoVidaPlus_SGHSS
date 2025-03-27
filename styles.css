@@ -17,20 +17,24 @@ header {
 
 /* Navegação */
 nav {
-    background-color: #333; /* Define a cor de fundo como cinza escuro */
-    padding: 10px; /* Adiciona preenchimento interno de 10px */
-    text-align: center; /* Centraliza o texto */
+    background-color: #333; /* Mantém o fundo escuro */
+    padding: 10px; /* Mantém o espaçamento interno */
+    display: flex; /* Alinha os itens horizontalmente */
+    justify-content: center; /* Garante alinhamento central */
+    overflow-x: auto; /* Permite rolagem horizontal em telas pequenas */
+    white-space: nowrap; /* Impede que os links quebrem para a próxima linha */
 }
 
 nav a {
-    color: white; /* Define a cor dos links como branco */
-    text-decoration: none; /* Remove o sublinhado dos links */
-    margin: 0 15px; /* Define margens horizontais de 15px entre os links */
-    font-weight: bold; /* Define o texto dos links como negrito */
+    color: white; /* Mantém os links brancos */
+    text-decoration: none; /* Remove sublinhado */
+    margin: 0 15px; /* Mantém espaçamento entre os links */
+    font-weight: bold; /* Mantém o negrito */
+    white-space: nowrap; /* Evita quebra de linha nos links */
 }
 
 nav a:hover {
-    color: #007bff; /* Muda a cor dos links para azul ao passar o mouse */
+    color: #007bff; /* Mantém o efeito hover */
 }
 
 /* Seção principal */
@@ -266,8 +270,9 @@ table tr:nth-child(even) {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .input-group {
-        flex-direction: column; /* Altera o layout do grupo de entrada para coluna */
+    nav {
+        justify-content: flex-start; /* Alinha os links à esquerda para rolagem */
+        padding: 10px 0; /* Ajusta o padding para melhor visualização */
     }
 
     .input-group label,
@@ -282,11 +287,6 @@ table tr:nth-child(even) {
         display: block; /* Altera a exibição da tabela para bloco */
         overflow-x: auto; /* Adiciona rolagem horizontal para tabelas grandes */
         white-space: nowrap; /* Impede a quebra de linha no texto da tabela */
-    }
-
-    nav a {
-        display: block; /* Exibe os links de navegação como blocos */
-        margin: 10px 0; /* Define margens verticais de 10px entre os links */
     }
 
     .hero-section {
