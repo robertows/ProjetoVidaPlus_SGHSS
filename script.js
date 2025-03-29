@@ -1,62 +1,61 @@
-// Elementos do DOM
 const domElements = {
-    usuarioLogadoSpan: document.getElementById('usuarioLogado'),
-    btnLogin: document.getElementById('btnLogin'),
-    btnLogout: document.getElementById('btnLogout'),
-    loginUsuario: document.getElementById('loginUsuario'),
-    loginSenha: document.getElementById('loginSenha'),
-    tabelaPacientes: document.getElementById('tabelaPacientes'),
-    tabelaConsultas: document.getElementById('tabelaConsultas'),
-    tabelaExames: document.getElementById('tabelaExames'),
-    tabelaProf: document.getElementById('tabelaProf'),
-    tabelaAgenda: document.getElementById('tabelaAgenda'),
-    tabelaSuprimentos: document.getElementById('tabelaSuprimentos'),
-    tabelaTelemedicina: document.getElementById('tabelaTelemedicina'),
-    tabelaHistoricoPrescricoes: document.getElementById('tabelaHistoricoPrescricoes'),
-    tabelaAcesso: document.getElementById('tabelaAcesso'),
-    tabelaFinanceiro: document.getElementById('tabelaFinanceiro'),
-    logAuditoria: document.getElementById('logAuditoria'),
-    selecionarPaciente: document.getElementById('selecionarPaciente'),
-    selecionarProfissional: document.getElementById('selecionarProfissional'),
-    especialidadeConsulta: document.getElementById('especialidadeConsulta'),
-    selecionarConsultaTele: document.getElementById('selecionarConsultaTele'),
-    historicoPaciente: document.getElementById('historicoPaciente'),
-    leitosDisponiveisSpan: document.getElementById('leitosDisponiveis'),
-    leitosOcupadosSpan: document.getElementById('leitosOcupados'),
-    receitaSpan: document.getElementById('receita'),
-    despesaSpan: document.getElementById('despesas'),
-    saldoSpan: document.getElementById('saldo'),
-    modalConfirmacao: document.getElementById('confirmacaoModal'),
-    modalMensagem: document.getElementById('modalMensagem'),
+    usuarioLogadoSpan: document.getElementById('usuarioLogado'), // Span para exibir o usuário logado
+    btnLogin: document.getElementById('btnLogin'), // Botão de login
+    btnLogout: document.getElementById('btnLogout'), // Botão de logout
+    loginUsuario: document.getElementById('loginUsuario'), // Campo de entrada do usuário
+    loginSenha: document.getElementById('loginSenha'), // Campo de entrada da senha
+    tabelaPacientes: document.getElementById('tabelaPacientes'), // Tabela de pacientes
+    tabelaConsultas: document.getElementById('tabelaConsultas'), // Tabela de consultas
+    tabelaExames: document.getElementById('tabelaExames'), // Tabela de exames
+    tabelaProf: document.getElementById('tabelaProf'), // Tabela de profissionais
+    tabelaAgenda: document.getElementById('tabelaAgenda'), // Tabela de agenda
+    tabelaSuprimentos: document.getElementById('tabelaSuprimentos'), // Tabela de suprimentos
+    tabelaTelemedicina: document.getElementById('tabelaTelemedicina'), // Tabela de telemedicina
+    tabelaHistoricoPrescricoes: document.getElementById('tabelaHistoricoPrescricoes'), // Tabela de prescrições
+    tabelaAcesso: document.getElementById('tabelaAcesso'), // Tabela de acesso de usuários
+    tabelaFinanceiro: document.getElementById('tabelaFinanceiro'), // Tabela de histórico financeiro
+    logAuditoria: document.getElementById('logAuditoria'), // Área de log de auditoria
+    selecionarPaciente: document.getElementById('selecionarPaciente'), // Select para escolher paciente
+    selecionarProfissional: document.getElementById('selecionarProfissional'), // Select para escolher profissional
+    especialidadeConsulta: document.getElementById('especialidadeConsulta'), // Select para especialidade
+    selecionarConsultaTele: document.getElementById('selecionarConsultaTele'), // Select para consultas tele
+    historicoPaciente: document.getElementById('historicoPaciente'), // Área de histórico do paciente
+    leitosDisponiveisSpan: document.getElementById('leitosDisponiveis'), // Span para leitos disponíveis
+    leitosOcupadosSpan: document.getElementById('leitosOcupados'), // Span para leitos ocupados
+    receitaSpan: document.getElementById('receita'), // Span para receita financeira
+    despesaSpan: document.getElementById('despesas'), // Span para despesas financeiras
+    saldoSpan: document.getElementById('saldo'), // Span para saldo financeiro
+    modalConfirmacao: document.getElementById('confirmacaoModal'), // Modal de confirmação
+    modalMensagem: document.getElementById('modalMensagem'), // Modal de mensagens/notificações
 };
 
-// Dados iniciais
-let pacientes = JSON.parse(localStorage.getItem('pacientes')) || [];
-let consultas = JSON.parse(localStorage.getItem('consultas')) || [];
-let exames = JSON.parse(localStorage.getItem('exames')) || [];
-let profissionais = JSON.parse(localStorage.getItem('profissionais')) || [];
-let suprimentos = JSON.parse(localStorage.getItem('suprimentos')) || [];
-let consultasTele = JSON.parse(localStorage.getItem('consultasTele')) || [];
-let prescricoes = JSON.parse(localStorage.getItem('prescricoes')) || [];
-let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-let auditoria = JSON.parse(localStorage.getItem('auditoria')) || [];
-let usuarioLogado = null;
-let localStream = null;
-let leitosDisponiveis = JSON.parse(localStorage.getItem('leitosDisponiveis')) || 10;
-let leitosOcupados = JSON.parse(localStorage.getItem('leitosOcupados')) || 5;
-let receita = JSON.parse(localStorage.getItem('receita')) || 50000;
-let despesas = JSON.parse(localStorage.getItem('despesas')) || 30000;
-let historicoFinanceiro = JSON.parse(localStorage.getItem('historicoFinanceiro')) || [];
-let cpfsOriginais = JSON.parse(localStorage.getItem('cpfsOriginais')) || [];
+// Dados iniciais armazenados no localStorage ou inicializados como arrays vazios
+let pacientes = JSON.parse(localStorage.getItem('pacientes')) || []; // Lista de pacientes
+let consultas = JSON.parse(localStorage.getItem('consultas')) || []; // Lista de consultas
+let exames = JSON.parse(localStorage.getItem('exames')) || []; // Lista de exames
+let profissionais = JSON.parse(localStorage.getItem('profissionais')) || []; // Lista de profissionais
+let suprimentos = JSON.parse(localStorage.getItem('suprimentos')) || []; // Lista de suprimentos
+let consultasTele = JSON.parse(localStorage.getItem('consultasTele')) || []; // Lista de consultas tele
+let prescricoes = JSON.parse(localStorage.getItem('prescricoes')) || []; // Lista de prescrições
+let usuarios = JSON.parse(localStorage.getItem('usuarios')) || []; // Lista de usuários
+let auditoria = JSON.parse(localStorage.getItem('auditoria')) || []; // Registro de auditoria
+let usuarioLogado = null; // Armazena o usuário atualmente logado
+let localStream = null; // Stream de vídeo local para telemedicina
+let leitosDisponiveis = JSON.parse(localStorage.getItem('leitosDisponiveis')) || 10; // Contador de leitos disponíveis
+let leitosOcupados = JSON.parse(localStorage.getItem('leitosOcupados')) || 5; // Contador de leitos ocupados
+let receita = JSON.parse(localStorage.getItem('receita')) || 50000; // Valor inicial da receita
+let despesas = JSON.parse(localStorage.getItem('despesas')) || 30000; // Valor inicial das despesas
+let historicoFinanceiro = JSON.parse(localStorage.getItem('historicoFinanceiro')) || []; // Histórico financeiro
+let cpfsOriginais = JSON.parse(localStorage.getItem('cpfsOriginais')) || []; // Backup de CPFs originais (LGPD)
 
-// Inicializar administrador padrão, se não existir
+// Cria um administrador padrão se não existir
 if (!usuarios.some(u => u.usuario === 'admin')) {
-    const senhaCriptografada = typeof CryptoJS !== 'undefined' ? CryptoJS.AES.encrypt('admin123', 'chave-secreta').toString() : 'admin123';
-    usuarios.push({ usuario: 'admin', senha: senhaCriptografada, permissao: 'admin' });
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    const senhaCriptografada = typeof CryptoJS !== 'undefined' ? CryptoJS.AES.encrypt('admin123', 'chave-secreta').toString() : 'admin123'; // Criptografa a senha padrão
+    usuarios.push({ usuario: 'admin', senha: senhaCriptografada, permissao: 'admin' }); // Adiciona o admin
+    localStorage.setItem('usuarios', JSON.stringify(usuarios)); // Salva no localStorage
 }
 
-// Função para salvar dados no localStorage
+// Salva todos os dados no localStorage
 function salvarDados() {
     localStorage.setItem('pacientes', JSON.stringify(pacientes));
     localStorage.setItem('consultas', JSON.stringify(consultas));
@@ -74,64 +73,62 @@ function salvarDados() {
     localStorage.setItem('historicoFinanceiro', JSON.stringify(historicoFinanceiro));
 }
 
-// Função para registrar auditoria
+// Registra uma entrada no log de auditoria
 function registrarAuditoria(mensagem) {
-    const dataHora = new Date().toLocaleString('pt-BR');
-    auditoria.push(`[${dataHora}]: ${mensagem}`);
-    salvarDados();
-    atualizarLogAuditoria();
+    const dataHora = new Date().toLocaleString('pt-BR'); // Obtém data e hora atual
+    auditoria.push(`[${dataHora}]: ${mensagem}`); // Adiciona a mensagem ao log
+    salvarDados(); // Salva os dados atualizados
+    atualizarLogAuditoria(); // Atualiza a exibição do log
 }
 
-// Função para atualizar o log de auditoria
+// Atualiza a exibição do log de auditoria na interface
 function atualizarLogAuditoria() {
     if (domElements.logAuditoria) {
-        domElements.logAuditoria.innerHTML = auditoria.map(item => `<p>${item}</p>`).join('');
+        domElements.logAuditoria.innerHTML = auditoria.map(item => `<p>${item}</p>`).join(''); // Cria parágrafos para cada entrada
     }
 }
 
-// Função para notificar
+// Exibe uma notificação temporária na interface
 function notificar(mensagem) {
     const modalMensagem = domElements.modalMensagem;
     if (modalMensagem) {
-        modalMensagem.textContent = mensagem;
-        modalMensagem.style.display = 'block';
-        modalMensagem.style.animation = 'slideIn 0.5s ease-in-out forwards';
+        modalMensagem.textContent = mensagem; // Define o texto da notificação
+        modalMensagem.style.display = 'block'; // Mostra o modal
+        modalMensagem.style.animation = 'slideIn 0.5s ease-in-out forwards'; // Animação de entrada
         setTimeout(() => {
-            modalMensagem.style.animation = 'slideOut 0.5s ease-in-out forwards';
-            setTimeout(() => {
-                modalMensagem.style.display = 'none';
-            }, 500);
-        }, 3000);
+            modalMensagem.style.animation = 'slideOut 0.5s ease-in-out forwards'; // Animação de saída
+            setTimeout(() => modalMensagem.style.display = 'none', 500); // Oculta após animação
+        }, 3000); // Duração da exibição (3 segundos)
     } else {
-        console.log('Notificação:', mensagem);
-        alert(mensagem);
+        console.log('Notificação:', mensagem); // Log no console se o modal não existir
+        alert(mensagem); // Alerta como fallback
     }
 }
 
-// Função para validar CPF
+// Valida um CPF usando o algoritmo oficial brasileiro
 function validarCPF(cpf) {
-    cpf = cpf.replace(/\D/g, '');
-    if (cpf.length !== 11) return false;
+    cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+    if (cpf.length !== 11) return false; // Verifica se tem 11 dígitos
     let soma = 0, resto;
-    for (let i = 1; i <= 9; i++) soma += parseInt(cpf.substring(i-1, i)) * (11 - i);
+    for (let i = 1; i <= 9; i++) soma += parseInt(cpf.substring(i-1, i)) * (11 - i); // Calcula primeiro dígito verificador
     resto = (soma * 10) % 11;
     if (resto === 10 || resto === 11) resto = 0;
     if (resto !== parseInt(cpf.substring(9, 10))) return false;
     soma = 0;
-    for (let i = 1; i <= 10; i++) soma += parseInt(cpf.substring(i-1, i)) * (12 - i);
+    for (let i = 1; i <= 10; i++) soma += parseInt(cpf.substring(i-1, i)) * (12 - i); // Calcula segundo dígito verificador
     resto = (soma * 10) % 11;
     if (resto === 10 || resto === 11) resto = 0;
     if (resto !== parseInt(cpf.substring(10, 11))) return false;
-    return true;
+    return true; // CPF válido
 }
 
-// Função para validar email
+// Valida um email usando uma expressão regular simples
 function validarEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Padrão básico de email
+    return re.test(email); // Retorna verdadeiro se o email for válido
 }
 
-// Função para formatar permissões
+// Formata as permissões para exibição amigável
 function formatarPermissao(permissao) {
     const permissoes = {
         admin: 'Administrador',
@@ -139,96 +136,96 @@ function formatarPermissao(permissao) {
         profissional_saude: 'Profissional de Saúde',
         paciente: 'Paciente'
     };
-    return permissoes[permissao] || permissao;
+    return permissoes[permissao] || permissao; // Retorna o nome formatado ou o original
 }
 
-// Função de login
+// Realiza o login do usuário
 function login() {
-    const usuario = domElements.loginUsuario?.value.trim();
-    const senha = domElements.loginSenha?.value;
+    const usuario = domElements.loginUsuario?.value.trim(); // Obtém o usuário digitado
+    const senha = domElements.loginSenha?.value; // Obtém a senha digitada
     if (!usuario || !senha) {
-        alert('Preencha usuário e senha!');
+        alert('Preencha usuário e senha!'); // Alerta se campos estiverem vazios
         return;
     }
 
-    const user = usuarios.find(u => u.usuario === usuario);
+    const user = usuarios.find(u => u.usuario === usuario); // Busca o usuário na lista
     if (!user) {
-        alert('Usuário não encontrado!');
+        alert('Usuário não encontrado!'); // Alerta se usuário não existir
         return;
     }
 
     if (typeof CryptoJS === 'undefined') {
-        alert('Biblioteca CryptoJS não está disponível!');
+        alert('Biblioteca CryptoJS não está disponível!'); // Verifica se CryptoJS está carregado
         return;
     }
 
     try {
-        const decrypted = CryptoJS.AES.decrypt(user.senha, 'chave-secreta').toString(CryptoJS.enc.Utf8);
-        if (decrypted === senha) {
-            usuarioLogado = { usuario: user.usuario, permissao: user.permissao };
-            sessionStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+        const decrypted = CryptoJS.AES.decrypt(user.senha, 'chave-secreta').toString(CryptoJS.enc.Utf8); // Descriptografa a senha
+        if (decrypted === senha) { // Verifica se a senha corresponde
+            usuarioLogado = { usuario: user.usuario, permissao: user.permissao }; // Define o usuário logado
+            sessionStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado)); // Armazena na sessão
             console.log('Login bem-sucedido. usuarioLogado:', usuarioLogado);
-            if (domElements.usuarioLogadoSpan) domElements.usuarioLogadoSpan.textContent = `${usuarioLogado.usuario} (${formatarPermissao(usuarioLogado.permissao)})`;
-            if (domElements.btnLogin) domElements.btnLogin.style.display = 'none';
-            if (domElements.btnLogout) domElements.btnLogout.style.display = 'inline';
-            if (domElements.loginUsuario) domElements.loginUsuario.style.display = 'none';
-            if (domElements.loginSenha) domElements.loginSenha.style.display = 'none';
-            registrarAuditoria(`Login realizado por ${usuario}`);
-            notificar('Login realizado com sucesso!');
-            atualizarTodasTabelasESelecoes();
+            if (domElements.usuarioLogadoSpan) domElements.usuarioLogadoSpan.textContent = `${usuarioLogado.usuario} (${formatarPermissao(usuarioLogado.permissao)})`; // Atualiza a interface
+            if (domElements.btnLogin) domElements.btnLogin.style.display = 'none'; // Oculta botão de login
+            if (domElements.btnLogout) domElements.btnLogout.style.display = 'inline'; // Mostra botão de logout
+            if (domElements.loginUsuario) domElements.loginUsuario.style.display = 'none'; // Oculta campo de usuário
+            if (domElements.loginSenha) domElements.loginSenha.style.display = 'none'; // Oculta campo de senha
+            registrarAuditoria(`Login realizado por ${usuario}`); // Registra no log
+            notificar('Login realizado com sucesso!'); // Exibe notificação
+            atualizarTodasTabelasESelecoes(); // Atualiza a interface
         } else {
-            alert('Usuário ou senha incorretos!');
+            alert('Usuário ou senha incorretos!'); // Alerta se a senha estiver errada
         }
     } catch (error) {
-        console.error('Erro ao descriptografar a senha:', error);
+        console.error('Erro ao descriptografar a senha:', error); // Log de erro
         alert('Erro ao verificar a senha.');
     }
 }
 
-// Função de logout
+// Realiza o logout do usuário
 function logout() {
-    registrarAuditoria(`Logout realizado por ${usuarioLogado?.usuario}`);
-    usuarioLogado = null;
-    sessionStorage.removeItem('usuarioLogado');
+    registrarAuditoria(`Logout realizado por ${usuarioLogado?.usuario}`); // Registra no log
+    usuarioLogado = null; // Remove o usuário logado
+    sessionStorage.removeItem('usuarioLogado'); // Limpa a sessão
     console.log('Logout realizado. usuarioLogado:', usuarioLogado);
-    if (domElements.usuarioLogadoSpan) domElements.usuarioLogadoSpan.textContent = 'Nenhum';
-    if (domElements.btnLogin) domElements.btnLogin.style.display = 'inline';
-    if (domElements.btnLogout) domElements.btnLogout.style.display = 'none';
+    if (domElements.usuarioLogadoSpan) domElements.usuarioLogadoSpan.textContent = 'Nenhum'; // Atualiza a interface
+    if (domElements.btnLogin) domElements.btnLogin.style.display = 'inline'; // Mostra botão de login
+    if (domElements.btnLogout) domElements.btnLogout.style.display = 'none'; // Oculta botão de logout
     if (domElements.loginUsuario) {
-        domElements.loginUsuario.style.display = 'inline';
-        domElements.loginUsuario.value = '';
+        domElements.loginUsuario.style.display = 'inline'; // Mostra campo de usuário
+        domElements.loginUsuario.value = ''; // Limpa o campo
     }
     if (domElements.loginSenha) {
-        domElements.loginSenha.style.display = 'inline';
-        domElements.loginSenha.value = '';
+        domElements.loginSenha.style.display = 'inline'; // Mostra campo de senha
+        domElements.loginSenha.value = ''; // Limpa o campo
     }
-    notificar('Logout realizado com sucesso!');
-    atualizarTodasTabelasESelecoes();
+    notificar('Logout realizado com sucesso!'); // Exibe notificação
+    atualizarTodasTabelasESelecoes(); // Atualiza a interface
 }
 
-// Função para atualizar todas as tabelas e seleções
+// Atualiza todas as tabelas e seleções da interface
 function atualizarTodasTabelasESelecoes() {
     console.log('Atualizando tabelas e seleções. usuarioLogado:', usuarioLogado);
-    atualizarTabelaPacientes();
-    atualizarTabelaConsultas();
-    atualizarTabelaExames();
-    atualizarTabelaProfissionais();
-    atualizarTabelaAgenda();
-    atualizarTabelaSuprimentos();
-    atualizarTabelaTelemedicina();
-    atualizarTabelaPrescricoes();
-    atualizarTabelaAcesso();
-    atualizarTabelaFinanceiro();
-    atualizarLogAuditoria();
-    atualizarSelecaoPacientes();
-    atualizarSelecaoProfissionais();
-    atualizarSelecaoEspecialidades();
-    atualizarSelecaoConsultasTele();
-    atualizarLeitos();
-    atualizarFinancas();
+    atualizarTabelaPacientes(); // Atualiza tabela de pacientes
+    atualizarTabelaConsultas(); // Atualiza tabela de consultas
+    atualizarTabelaExames(); // Atualiza tabela de exames
+    atualizarTabelaProfissionais(); // Atualiza tabela de profissionais
+    atualizarTabelaAgenda(); // Atualiza tabela de agenda
+    atualizarTabelaSuprimentos(); // Atualiza tabela de suprimentos
+    atualizarTabelaTelemedicina(); // Atualiza tabela de telemedicina
+    atualizarTabelaPrescricoes(); // Atualiza tabela de prescrições
+    atualizarTabelaAcesso(); // Atualiza tabela de acesso
+    atualizarTabelaFinanceiro(); // Atualiza tabela financeira
+    atualizarLogAuditoria(); // Atualiza log de auditoria
+    atualizarSelecaoPacientes(); // Atualiza seleções de pacientes
+    atualizarSelecaoProfissionais(); // Atualiza seleções de profissionais
+    atualizarSelecaoEspecialidades(); // Atualiza seleções de especialidades
+    atualizarSelecaoConsultasTele(); // Atualiza seleções de consultas tele
+    atualizarLeitos(); // Atualiza exibição de leitos
+    atualizarFinancas(); // Atualiza exibição financeira
 }
 
-// Funções de atualização de seleções
+// Atualiza os selects de pacientes em vários formulários
 function atualizarSelecaoPacientes() {
     const selects = [
         document.getElementById('pacienteConsulta'),
@@ -240,12 +237,13 @@ function atualizarSelecaoPacientes() {
     ];
     selects.forEach(select => {
         if (select) {
-            select.innerHTML = '<option value="">Selecione um paciente</option>' +
-                pacientes.map(p => `<option value="${p.cpf}">${p.nome}</option>`).join('');
+            select.innerHTML = '<option value="">Selecione um paciente</option>' + // Opção padrão
+                pacientes.map(p => `<option value="${p.cpf}">${p.nome}</option>`).join(''); // Lista de pacientes
         }
     });
 }
 
+// Atualiza os selects de profissionais em vários formulários
 function atualizarSelecaoProfissionais() {
     const selects = [
         document.getElementById('profissionalConsulta'),
@@ -254,55 +252,59 @@ function atualizarSelecaoProfissionais() {
     ];
     selects.forEach(select => {
         if (select) {
-            select.innerHTML = '<option value="">Selecione um profissional</option>' +
-                profissionais.map(p => `<option value="${p.crm}">${p.nome}</option>`).join('');
+            select.innerHTML = '<option value="">Selecione um profissional</option>' + // Opção padrão
+                profissionais.map(p => `<option value="${p.crm}">${p.nome}</option>`).join(''); // Lista de profissionais
         }
     });
 }
 
+// Atualiza o select de especialidades com base nos profissionais
 function atualizarSelecaoEspecialidades() {
     if (domElements.especialidadeConsulta) {
-        const especialidades = [...new Set(profissionais.map(p => p.especialidade))];
-        domElements.especialidadeConsulta.innerHTML = '<option value="">Selecione uma especialidade</option>' +
-            especialidades.map(e => `<option value="${e}">${e}</option>`).join('');
+        const especialidades = [...new Set(profissionais.map(p => p.especialidade))]; // Remove duplicatas
+        domElements.especialidadeConsulta.innerHTML = '<option value="">Selecione uma especialidade</option>' + // Opção padrão
+            especialidades.map(e => `<option value="${e}">${e}</option>`).join(''); // Lista de especialidades
     }
 }
 
+// Preenche automaticamente a especialidade ao selecionar um profissional
 function preencherEspecialidade() {
-    const crm = document.getElementById('profissionalConsulta')?.value;
-    const profissional = profissionais.find(p => p.crm === crm);
+    const crm = document.getElementById('profissionalConsulta')?.value; // Obtém o CRM selecionado
+    const profissional = profissionais.find(p => p.crm === crm); // Busca o profissional
     if (profissional && domElements.especialidadeConsulta) {
-        domElements.especialidadeConsulta.value = profissional.especialidade;
+        domElements.especialidadeConsulta.value = profissional.especialidade; // Define a especialidade
     }
 }
 
+// Preenche o select de profissionais com base na especialidade selecionada
 function preencherProfissional() {
-    const especialidade = domElements.especialidadeConsulta?.value;
+    const especialidade = domElements.especialidadeConsulta?.value; // Obtém a especialidade
     const selectProfissional = document.getElementById('profissionalConsulta');
     if (selectProfissional) {
-        selectProfissional.innerHTML = '<option value="">Selecione um profissional</option>' +
+        selectProfissional.innerHTML = '<option value="">Selecione um profissional</option>' + // Opção padrão
             profissionais
-                .filter(p => p.especialidade === especialidade)
-                .map(p => `<option value="${p.crm}">${p.nome}</option>`).join('');
+                .filter(p => p.especialidade === especialidade) // Filtra por especialidade
+                .map(p => `<option value="${p.crm}">${p.nome}</option>`).join(''); // Lista de profissionais
     }
 }
 
+// Atualiza o select de consultas de telemedicina
 function atualizarSelecaoConsultasTele() {
     if (domElements.selecionarConsultaTele) {
-        domElements.selecionarConsultaTele.innerHTML = '<option value="">Selecione uma consulta</option>' +
-            consultasTele.map((c, index) => `<option value="${index}">${c.paciente} - ${c.data} ${c.hora}</option>`).join('');
+        domElements.selecionarConsultaTele.innerHTML = '<option value="">Selecione uma consulta</option>' + // Opção padrão
+            consultasTele.map((c, index) => `<option value="${index}">${c.paciente} - ${c.data} ${c.hora}</option>`).join(''); // Lista de consultas
     }
     const selectPrescricao = document.getElementById('consultaTelePrescricao');
     if (selectPrescricao) {
-        selectPrescricao.innerHTML = '<option value="">Selecione uma consulta</option>' +
-            consultasTele.map((c, index) => `<option value="${index}">${c.paciente} - ${c.data} ${c.hora}</option>`).join('');
+        selectPrescricao.innerHTML = '<option value="">Selecione uma consulta</option>' + // Opção padrão
+            consultasTele.map((c, index) => `<option value="${index}">${c.paciente} - ${c.data} ${c.hora}</option>`).join(''); // Lista de consultas
     }
 }
 
-// Funções de atualização de tabelas
+// Atualiza a tabela de pacientes
 function atualizarTabelaPacientes() {
     if (domElements.tabelaPacientes) {
-        if (!usuarioLogado) {
+        if (!usuarioLogado) { // Verifica se há usuário logado
             domElements.tabelaPacientes.innerHTML = '<tr><td colspan="6">Faça login para visualizar os dados dos pacientes</td></tr>';
             return;
         }
@@ -314,7 +316,7 @@ function atualizarTabelaPacientes() {
                 <td>${p.telefone}</td>
                 <td>${p.endereco}</td>
                 <td><button class="excluir" onclick="confirmarExclusao('paciente', ${index})">Excluir</button></td>
-            </tr>`).join('');
+            </tr>`).join(''); // Gera as linhas da tabela
         domElements.tabelaPacientes.innerHTML = `
             <thead>
                 <tr>
@@ -327,11 +329,12 @@ function atualizarTabelaPacientes() {
                 </tr>
             </thead>
             <tbody>
-                ${corpoTabela || '<tr><td colspan="6">Nenhum paciente cadastrado</td></tr>'}
+                ${corpoTabela || '<tr><td colspan="6">Nenhum paciente cadastrado</td></tr>'} // Exibe mensagem se vazio
             </tbody>`;
     }
 }
 
+// Atualiza a tabela de consultas
 function atualizarTabelaConsultas() {
     if (domElements.tabelaConsultas) {
         if (!usuarioLogado) {
@@ -364,6 +367,7 @@ function atualizarTabelaConsultas() {
     }
 }
 
+// Atualiza a tabela de exames
 function atualizarTabelaExames() {
     if (domElements.tabelaExames) {
         if (!usuarioLogado) {
@@ -394,6 +398,7 @@ function atualizarTabelaExames() {
     }
 }
 
+// Atualiza a tabela de profissionais
 function atualizarTabelaProfissionais() {
     if (domElements.tabelaProf) {
         if (!usuarioLogado) {
@@ -428,6 +433,7 @@ function atualizarTabelaProfissionais() {
     }
 }
 
+// Atualiza a tabela de agenda com filtros por profissional
 function atualizarTabelaAgenda() {
     if (domElements.tabelaAgenda) {
         if (!usuarioLogado) {
@@ -438,13 +444,13 @@ function atualizarTabelaAgenda() {
         const crm = selectProfissional?.value;
         let consultasFiltradas = [];
         let teleconsultasFiltradas = [];
-        if (crm) {
+        if (crm) { // Filtra por profissional selecionado
             const profissional = profissionais.find(p => p.crm === crm);
             if (profissional) {
                 consultasFiltradas = consultas.filter(c => c.profissional === profissional.nome);
                 teleconsultasFiltradas = consultasTele.filter(c => c.profissional === profissional.nome);
             }
-        } else {
+        } else { // Mostra todas as consultas
             consultasFiltradas = consultas;
             teleconsultasFiltradas = consultasTele;
         }
@@ -482,6 +488,7 @@ function atualizarTabelaAgenda() {
     }
 }
 
+// Atualiza a tabela de suprimentos
 function atualizarTabelaSuprimentos() {
     if (domElements.tabelaSuprimentos) {
         if (!usuarioLogado) {
@@ -510,6 +517,7 @@ function atualizarTabelaSuprimentos() {
     }
 }
 
+// Atualiza a tabela de consultas de telemedicina
 function atualizarTabelaTelemedicina() {
     if (domElements.tabelaTelemedicina) {
         if (!usuarioLogado) {
@@ -542,6 +550,7 @@ function atualizarTabelaTelemedicina() {
     }
 }
 
+// Atualiza a tabela de prescrições e exames (histórico clínico)
 function atualizarTabelaPrescricoes() {
     if (domElements.tabelaHistoricoPrescricoes) {
         if (!usuarioLogado) {
@@ -558,11 +567,8 @@ function atualizarTabelaPrescricoes() {
             domElements.tabelaHistoricoPrescricoes.innerHTML = '<tr><td colspan="7">Paciente não encontrado</td></tr>';
             return;
         }
-        // Filtrar prescrições (online e presenciais)
-        const prescricoesFiltradas = prescricoes.filter(p => p.paciente === paciente.nome);
-        // Filtrar exames
-        const examesFiltrados = exames.filter(e => e.paciente === paciente.nome);
-        // Combinar prescrições e exames
+        const prescricoesFiltradas = prescricoes.filter(p => p.paciente === paciente.nome); // Filtra prescrições
+        const examesFiltrados = exames.filter(e => e.paciente === paciente.nome); // Filtra exames
         const historico = [
             ...prescricoesFiltradas.map((p, index) => ({
                 tipo: 'Prescrição',
@@ -611,6 +617,7 @@ function atualizarTabelaPrescricoes() {
     }
 }
 
+// Atualiza a tabela de acesso de usuários
 function atualizarTabelaAcesso() {
     if (domElements.tabelaAcesso) {
         if (!usuarioLogado) {
@@ -637,6 +644,7 @@ function atualizarTabelaAcesso() {
     }
 }
 
+// Atualiza a exibição de leitos disponíveis e ocupados
 function atualizarLeitos() {
     if (domElements.leitosDisponiveisSpan && domElements.leitosOcupadosSpan) {
         if (!usuarioLogado) {
@@ -644,11 +652,12 @@ function atualizarLeitos() {
             domElements.leitosOcupadosSpan.textContent = 'Faça login';
             return;
         }
-        domElements.leitosDisponiveisSpan.textContent = leitosDisponiveis;
-        domElements.leitosOcupadosSpan.textContent = leitosOcupados;
+        domElements.leitosDisponiveisSpan.textContent = leitosDisponiveis; // Exibe leitos disponíveis
+        domElements.leitosOcupadosSpan.textContent = leitosOcupados; // Exibe leitos ocupados
     }
 }
 
+// Atualiza a exibição financeira (receita, despesa, saldo)
 function atualizarFinancas() {
     if (domElements.receitaSpan && domElements.despesaSpan && domElements.saldoSpan) {
         if (!usuarioLogado) {
@@ -657,12 +666,13 @@ function atualizarFinancas() {
             domElements.saldoSpan.textContent = 'Faça login';
             return;
         }
-        domElements.receitaSpan.textContent = receita.toFixed(2);
-        domElements.despesaSpan.textContent = despesas.toFixed(2);
-        domElements.saldoSpan.textContent = (receita - despesas).toFixed(2);
+        domElements.receitaSpan.textContent = receita.toFixed(2); // Exibe receita
+        domElements.despesaSpan.textContent = despesas.toFixed(2); // Exibe despesa
+        domElements.saldoSpan.textContent = (receita - despesas).toFixed(2); // Exibe saldo
     }
 }
 
+// Atualiza a tabela de histórico financeiro
 function atualizarTabelaFinanceiro() {
     if (domElements.tabelaFinanceiro) {
         if (!usuarioLogado) {
@@ -691,7 +701,7 @@ function atualizarTabelaFinanceiro() {
     }
 }
 
-// Funções de histórico
+// Exibe o histórico do paciente selecionado
 function mostrarHistorico() {
     if (domElements.historicoPaciente) {
         if (!usuarioLogado) {
@@ -703,9 +713,9 @@ function mostrarHistorico() {
             domElements.historicoPaciente.innerHTML = '<p>Selecione um paciente</p>';
             return;
         }
-        const pacienteConsultas = consultas.filter(c => c.cpf === cpf);
-        const pacienteExames = exames.filter(e => e.cpf === cpf);
-        const pacienteTeleconsultas = consultasTele.filter(c => c.cpf === cpf);
+        const pacienteConsultas = consultas.filter(c => c.cpf === cpf); // Filtra consultas
+        const pacienteExames = exames.filter(e => e.cpf === cpf); // Filtra exames
+        const pacienteTeleconsultas = consultasTele.filter(c => c.cpf === cpf); // Filtra teleconsultas
         domElements.historicoPaciente.innerHTML = `
             <h3>Consultas Presenciais</h3>
             ${pacienteConsultas.map(c => `<p>${c.data} ${c.hora} - ${c.profissional} (${c.especialidade})</p>`).join('') || '<p>Nenhuma consulta</p>'}
@@ -716,7 +726,7 @@ function mostrarHistorico() {
     }
 }
 
-// Funções de telemedicina
+// Carrega informações da consulta de telemedicina selecionada
 function carregarConsultaSelecionada() {
     const videoArea = document.getElementById('videoArea');
     const mensagemVideochamada = document.getElementById('mensagemVideochamada');
@@ -733,9 +743,10 @@ function carregarConsultaSelecionada() {
     }
     const consulta = consultasTele[index];
     mensagemVideochamada.textContent = `Consulta com ${consulta.paciente} em ${consulta.data} às ${consulta.hora}`;
-    videoArea.style.display = 'flex';
+    videoArea.style.display = 'flex'; // Mostra a área de vídeo
 }
 
+// Inicia uma videochamada
 async function iniciarVideoChamada() {
     if (!usuarioLogado) {
         alert('Faça login para iniciar uma videochamada!');
@@ -753,26 +764,23 @@ async function iniciarVideoChamada() {
     }
 
     const consulta = consultasTele[index];
-    consulta.status = 'Em andamento';
+    consulta.status = 'Em andamento'; // Atualiza o status
     salvarDados();
     atualizarTabelaTelemedicina();
 
-    // Mostrar o botão "Encerrar Videochamada" e ocultar o botão "Iniciar Videochamada"
-    document.getElementById('startVideoCall').style.display = 'none';
-    document.getElementById('stopVideoCall').style.display = 'inline-block';
+    document.getElementById('startVideoCall').style.display = 'none'; // Oculta botão de iniciar
+    document.getElementById('stopVideoCall').style.display = 'inline-block'; // Mostra botão de encerrar
 
-    // Acessar a câmera e exibir o vídeo local
     try {
-        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }); // Acessa câmera e microfone
         const localVideo = document.getElementById('localVideo');
-        localVideo.srcObject = localStream;
+        localVideo.srcObject = localStream; // Exibe o vídeo local
 
-        // Simular o vídeo do paciente
         const remoteVideoContainer = document.getElementById('remoteVideoContainer');
         const remoteVideo = document.getElementById('remoteVideo');
         const remoteVideoPlaceholder = document.getElementById('remoteVideoPlaceholder');
-        remoteVideo.style.display = 'none';
-        remoteVideoPlaceholder.style.display = 'block';
+        remoteVideo.style.display = 'none'; // Oculta vídeo remoto real
+        remoteVideoPlaceholder.style.display = 'block'; // Mostra placeholder
         remoteVideoPlaceholder.textContent = `Vídeo do Paciente: ${consulta.paciente} (Simulado)`;
 
         registrarAuditoria(`Videochamada iniciada com ${consulta.paciente} por ${usuarioLogado.usuario}`);
@@ -785,6 +793,7 @@ async function iniciarVideoChamada() {
     }
 }
 
+// Encerra uma videochamada
 function encerrarVideoChamada() {
     if (!usuarioLogado) {
         alert('Faça login para encerrar uma videochamada!');
@@ -798,24 +807,21 @@ function encerrarVideoChamada() {
     }
 
     const consulta = consultasTele[index];
-    consulta.status = 'Concluída';
+    consulta.status = 'Concluída'; // Atualiza o status
     salvarDados();
     atualizarTabelaTelemedicina();
 
-    // Ocultar o botão "Encerrar Videochamada" e mostrar o botão "Iniciar Videochamada"
-    document.getElementById('startVideoCall').style.display = 'inline-block';
-    document.getElementById('stopVideoCall').style.display = 'none';
+    document.getElementById('startVideoCall').style.display = 'inline-block'; // Mostra botão de iniciar
+    document.getElementById('stopVideoCall').style.display = 'none'; // Oculta botão de encerrar
 
-    // Parar o stream da câmera
-    if (localStream) {
+    if (localStream) { // Para o stream de vídeo
         localStream.getTracks().forEach(track => track.stop());
         localStream = null;
     }
 
     const localVideo = document.getElementById('localVideo');
-    localVideo.srcObject = null;
+    localVideo.srcObject = null; // Limpa o vídeo local
 
-    // Limpar a simulação do vídeo do paciente
     const remoteVideoContainer = document.getElementById('remoteVideoContainer');
     const remoteVideo = document.getElementById('remoteVideo');
     const remoteVideoPlaceholder = document.getElementById('remoteVideoPlaceholder');
@@ -827,7 +833,7 @@ function encerrarVideoChamada() {
     notificar('Videochamada encerrada com sucesso!');
 }
 
-// Funções de adição
+// Adiciona um novo paciente
 function adicionarPaciente() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar um paciente!');
@@ -837,51 +843,37 @@ function adicionarPaciente() {
         alert('Você não tem permissão para adicionar pacientes!');
         return;
     }
+
     const nome = document.getElementById('nome')?.value;
     let cpf = document.getElementById('cpf')?.value;
     const dataNascimento = document.getElementById('dataNascimento')?.value;
     const telefone = document.getElementById('telefone')?.value;
     const endereco = document.getElementById('endereco')?.value;
 
-    // Verifica se todos os campos estão preenchidos
     if (!nome || !cpf || !dataNascimento || !telefone || !endereco) {
         alert('Preencha todos os campos!');
         return;
     }
 
-    // Remove caracteres não numéricos do CPF para validação
-    const cpfLimpo = cpf.replace(/[^\d]+/g, '');
-
-    // Verifica se o CPF tem 11 dígitos
+    const cpfLimpo = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
     if (cpfLimpo.length !== 11) {
         alert('CPF inválido! Deve conter 11 dígitos.');
         return;
     }
 
-    // Valida o CPF
-    if (!validarCPF(cpfLimpo)) {
-        alert('CPF inválido!');
-        return;
-    }
-
-    // Verifica se o CPF já está cadastrado
     if (pacientes.some(p => p.cpf === cpf)) {
         alert('CPF já cadastrado!');
         return;
     }
 
-    // Exibir mensagem de CPF válido apenas após todas as validações
-    notificar('CPF válido.');
-
-    // Adiciona o paciente com o CPF no formato original (com pontos e traços)
-    pacientes.push({ nome, cpf, dataNascimento, telefone, endereco });
+    pacientes.push({ nome, cpf, dataNascimento, telefone, endereco }); // Adiciona o paciente
     salvarDados();
     atualizarTabelaPacientes();
     atualizarSelecaoPacientes();
     registrarAuditoria(`Paciente ${nome} adicionado por ${usuarioLogado.usuario}`);
     notificar('Paciente cadastrado com sucesso.');
 
-    // Limpa o formulário após o cadastro
+    // Limpa o formulário
     document.getElementById('nome').value = '';
     document.getElementById('cpf').value = '';
     document.getElementById('dataNascimento').value = '';
@@ -889,6 +881,7 @@ function adicionarPaciente() {
     document.getElementById('endereco').value = '';
 }
 
+// Adiciona uma nova consulta presencial
 function adicionarConsulta() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar uma consulta!');
@@ -927,6 +920,7 @@ function adicionarConsulta() {
     notificar('Consulta presencial agendada com sucesso.');
 }
 
+// Adiciona um novo exame
 function adicionarExame() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar um exame!');
@@ -956,6 +950,7 @@ function adicionarExame() {
     notificar('Exame agendado com sucesso.');
 }
 
+// Adiciona um novo profissional
 function adicionarProfissional() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar um profissional!');
@@ -992,6 +987,7 @@ function adicionarProfissional() {
     notificar('Profissional cadastrado com sucesso.');
 }
 
+// Adiciona um novo suprimento
 function adicionarSuprimento() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar um suprimento!');
@@ -1009,7 +1005,7 @@ function adicionarSuprimento() {
         return;
     }
     suprimentos.push({ nome, quantidade, precoUnitario });
-    despesas += quantidade * precoUnitario;
+    despesas += quantidade * precoUnitario; // Atualiza despesas
     historicoFinanceiro.push({ data: new Date().toLocaleDateString('pt-BR'), receita, despesa: despesas });
     salvarDados();
     atualizarTabelaSuprimentos();
@@ -1019,6 +1015,7 @@ function adicionarSuprimento() {
     notificar('Suprimento adicionado com sucesso.');
 }
 
+// Adiciona uma nova consulta de telemedicina
 function adicionarConsultaTelemedicina() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar uma consulta de telemedicina!');
@@ -1057,6 +1054,7 @@ function adicionarConsultaTelemedicina() {
     notificar('Consulta online agendada com sucesso.');
 }
 
+// Adiciona uma prescrição a partir de uma consulta de telemedicina
 function adicionarPrescricao() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar uma prescrição!');
@@ -1089,6 +1087,7 @@ function adicionarPrescricao() {
     notificar('Prescrição adicionada com sucesso.');
 }
 
+// Adiciona uma prescrição direta por um profissional
 function adicionarPrescricaoProf() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar uma prescrição!');
@@ -1126,6 +1125,7 @@ function adicionarPrescricaoProf() {
     notificar('Prescrição adicionada com sucesso.');
 }
 
+// Adiciona um novo usuário ao sistema
 function adicionarUsuario() {
     if (!usuarioLogado) {
         alert('Faça login para adicionar um usuário!');
@@ -1146,7 +1146,7 @@ function adicionarUsuario() {
         alert('Usuário já existe!');
         return;
     }
-    const senhaCriptografada = CryptoJS.AES.encrypt(senha, 'chave-secreta').toString();
+    const senhaCriptografada = CryptoJS.AES.encrypt(senha, 'chave-secreta').toString(); // Criptografa a senha
     usuarios.push({ usuario, senha: senhaCriptografada, permissao });
     salvarDados();
     atualizarTabelaAcesso();
@@ -1154,19 +1154,20 @@ function adicionarUsuario() {
     notificar('Usuário adicionado com sucesso!');
 }
 
-// Funções de exclusão
+// Exibe o modal de confirmação antes de excluir um item
 function confirmarExclusao(tipo, index) {
     if (!usuarioLogado) {
         alert('Faça login para realizar esta ação!');
         return;
     }
     if (domElements.modalConfirmacao) {
-        const modal = new bootstrap.Modal(domElements.modalConfirmacao);
+        const modal = new bootstrap.Modal(domElements.modalConfirmacao); // Usa Bootstrap para o modal
         modal.show();
-        document.getElementById('confirmarExclusao').onclick = () => executarExclusao(tipo, index, modal);
+        document.getElementById('confirmarExclusao').onclick = () => executarExclusao(tipo, index, modal); // Associa ação de exclusão
     }
 }
 
+// Executa a exclusão de um item após confirmação
 function executarExclusao(tipo, index, modal) {
     if (!usuarioLogado) {
         alert('Faça login para realizar esta ação!');
@@ -1180,7 +1181,7 @@ function executarExclusao(tipo, index, modal) {
                 return;
             }
             mensagemAuditoria = `Paciente ${pacientes[index].nome} excluído por ${usuarioLogado.usuario}`;
-            pacientes.splice(index, 1);
+            pacientes.splice(index, 1); // Remove o paciente
             atualizarTabelaPacientes();
             atualizarSelecaoPacientes();
             break;
@@ -1201,7 +1202,7 @@ function executarExclusao(tipo, index, modal) {
             mensagemAuditoria = `Exame de ${exames[index].paciente} excluído por ${usuarioLogado.usuario}`;
             exames.splice(index, 1);
             atualizarTabelaExames();
-            atualizarTabelaPrescricoes(); // Atualizar o histórico clínico
+            atualizarTabelaPrescricoes();
             break;
         case 'profissional':
             if (usuarioLogado.permissao !== 'admin') {
@@ -1264,12 +1265,12 @@ function executarExclusao(tipo, index, modal) {
     salvarDados();
     registrarAuditoria(mensagemAuditoria);
     notificar('Item excluído com sucesso!');
-    modal.hide();
+    modal.hide(); // Fecha o modal
 }
 
-// Funções de manipulação de formulários
+// Funções para manipular envio de formulários
 function handleFormPaciente(event) {
-    event.preventDefault();
+    event.preventDefault(); // Impede o envio padrão do formulário
     adicionarPaciente();
 }
 
@@ -1319,14 +1320,14 @@ function handleFormLeito(event) {
         return;
     }
     const acao = document.getElementById('acaoLeito')?.value;
-    if (acao === 'adicionar' && leitosDisponiveis > 0) {
+    if (acao === 'adicionar' && leitosDisponiveis > 0) { // Ocupa um leito
         leitosDisponiveis--;
         leitosOcupados++;
         salvarDados();
         atualizarLeitos();
         registrarAuditoria(`Leito ocupado por ${usuarioLogado.usuario}`);
         notificar('Leito ocupado com sucesso.');
-    } else if (acao === 'liberar' && leitosOcupados > 0) {
+    } else if (acao === 'liberar' && leitosOcupados > 0) { // Libera um leito
         leitosDisponiveis++;
         leitosOcupados--;
         salvarDados();
@@ -1335,7 +1336,6 @@ function handleFormLeito(event) {
         notificar('Leito liberado com sucesso.');
     } else {
         alert('Ação inválida ou não há leitos disponíveis!');
-        return;
     }
 }
 
@@ -1354,7 +1354,7 @@ function handleFormReceita(event) {
         alert('Digite um valor válido!');
         return;
     }
-    receita += valor;
+    receita += valor; // Adiciona ao total de receita
     historicoFinanceiro.push({ data: new Date().toLocaleDateString('pt-BR'), receita, despesa: despesas });
     salvarDados();
     atualizarFinancas();
@@ -1378,7 +1378,7 @@ function handleFormDespesa(event) {
         alert('Digite um valor válido!');
         return;
     }
-    despesas += valor;
+    despesas += valor; // Adiciona ao total de despesas
     historicoFinanceiro.push({ data: new Date().toLocaleDateString('pt-BR'), receita, despesa: despesas });
     salvarDados();
     atualizarFinancas();
@@ -1392,7 +1392,7 @@ function handleFormAcesso(event) {
     adicionarUsuario();
 }
 
-// Funções LGPD
+// Anonimiza os CPFs dos pacientes (conformidade com LGPD)
 function anonimizarCPFs() {
     if (!usuarioLogado) {
         alert('Faça login para realizar esta ação!');
@@ -1402,13 +1402,12 @@ function anonimizarCPFs() {
         alert('Você não tem permissão para anonimizar CPFs!');
         return;
     }
-    // Salvar os CPFs originais antes de anonimizar
-    cpfsOriginais = pacientes.map(p => ({ cpfOriginal: p.cpf, nome: p.nome }));
+    cpfsOriginais = pacientes.map(p => ({ cpfOriginal: p.cpf, nome: p.nome })); // Faz backup dos CPFs
     localStorage.setItem('cpfsOriginais', JSON.stringify(cpfsOriginais));
     
     pacientes = pacientes.map(p => ({
         ...p,
-        cpf: p.cpf.substring(0, 3) + '***.***' + p.cpf.substring(9)
+        cpf: p.cpf.substring(0, 3) + '***.***' + p.cpf.substring(9) // Anonimiza o CPF
     }));
     salvarDados();
     atualizarTabelaPacientes();
@@ -1416,6 +1415,7 @@ function anonimizarCPFs() {
     notificar('CPFs anonimizados com sucesso!');
 }
 
+// Cancela a anonimização dos CPFs
 function cancelarAnonimizacaoCPFs() {
     if (!usuarioLogado) {
         alert('Faça login para realizar esta ação!');
@@ -1431,7 +1431,7 @@ function cancelarAnonimizacaoCPFs() {
     }
     pacientes = pacientes.map(p => {
         const original = cpfsOriginais.find(c => c.nome === p.nome);
-        return original ? { ...p, cpf: original.cpfOriginal } : p;
+        return original ? { ...p, cpf: original.cpfOriginal } : p; // Restaura o CPF original
     });
     salvarDados();
     atualizarTabelaPacientes();
@@ -1439,6 +1439,7 @@ function cancelarAnonimizacaoCPFs() {
     notificar('Anonimização de CPFs cancelada com sucesso!');
 }
 
+// Permite ao paciente excluir seus próprios dados (LGPD)
 function excluirMeusDados() {
     if (!usuarioLogado) {
         alert('Faça login para realizar esta ação!');
@@ -1459,18 +1460,18 @@ function excluirMeusDados() {
     registrarAuditoria(`Dados do paciente com CPF ${cpf} excluídos (LGPD) por ${usuarioLogado.usuario}`);
 }
 
-// Inicialização
+// Inicializa a aplicação quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Página carregada. Verificando sessionStorage...');
     const usuarioLogadoStorage = sessionStorage.getItem('usuarioLogado');
     console.log('sessionStorage usuarioLogado:', usuarioLogadoStorage);
     
-    if (usuarioLogadoStorage) {
+    if (usuarioLogadoStorage) { // Restaura o usuário logado da sessão
         try {
             usuarioLogado = JSON.parse(usuarioLogadoStorage);
             console.log('usuarioLogado restaurado:', usuarioLogado);
             if (domElements.usuarioLogadoSpan) {
-                domElements.usuarioLogadoSpan.textContent = `${usuarioLogado.usuario} (${formatarPermissao(usuarioLogado.permissao)})`;
+                domElements.usuarioLogadoSpan.textContent = `${usuarioLogado.usuario} (${formatarPermissao(usuarioLogado.permissao)})`; // Atualiza interface
             }
             if (domElements.btnLogin) domElements.btnLogin.style.display = 'none';
             if (domElements.btnLogout) domElements.btnLogout.style.display = 'inline';
@@ -1481,7 +1482,7 @@ document.addEventListener('DOMContentLoaded', () => {
             usuarioLogado = null;
             sessionStorage.removeItem('usuarioLogado');
         }
-    } else {
+    } else { // Configura interface para usuário não logado
         console.log('Nenhum usuário logado encontrado no sessionStorage.');
         usuarioLogado = null;
         if (domElements.usuarioLogadoSpan) domElements.usuarioLogadoSpan.textContent = 'Nenhum';
@@ -1492,9 +1493,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     console.log('Estado final do usuarioLogado após inicialização:', usuarioLogado);
-    atualizarTodasTabelasESelecoes();
+    atualizarTodasTabelasESelecoes(); // Atualiza toda a interface
 
-    // Associar eventos aos formulários
+    // Associa eventos aos formulários
     const formPaciente = document.getElementById('formPaciente');
     const formConsulta = document.getElementById('formConsulta');
     const formExame = document.getElementById('formExame');
