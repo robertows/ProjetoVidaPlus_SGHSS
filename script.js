@@ -1,3 +1,4 @@
+// Objeto que armazena referências aos elementos do DOM para fácil acesso
 const domElements = {
     usuarioLogadoSpan: document.getElementById('usuarioLogado'), // Span para exibir o usuário logado
     btnLogin: document.getElementById('btnLogin'), // Botão de login
